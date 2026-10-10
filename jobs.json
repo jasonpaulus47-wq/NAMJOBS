@@ -1,22 +1,22 @@
 [
   {
-    "id": 101,
+    "id": "1",
     "title": "Engineering Technician (Transmission)",
     "company": "NamPower (Pty) Ltd",
     "location": "Windhoek",
     "type": "Full-time",
     "postedDate": "2026-10-10",
     "desc": "Responsible for installation and maintenance of PLC systems and HF/VHF radio equipment.",
-    "contact": "https://recruitment.nampower.com.na/"
+    "contact": "https://www.nampower.com.na/Careers.aspx"
   },
   {
-    "id": 102,
+    "id": "2",
     "title": "Store Cashier & Customer Assistant",
     "company": "BUCO Building Supplies",
     "location": "Windhoek",
     "type": "Full-time",
     "postedDate": "2026-10-10",
     "desc": "Handling POS systems, payment processing, customer inquiries, and stock reconciliation.",
-    "contact": "https://wa.me/264811002233?text=Hi,%20applying%20for%20BUCO%20Cashier"
+    "contact": "https://www.buco.co.za/"
   }
 ]
