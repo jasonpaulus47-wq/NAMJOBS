@@ -1,173 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NamJobs - All Namibian Vacancies in One Place</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NamJobs - Find Jobs in Namibia</title>
   <style>
     :root {
-      --bg-color: #0b0f17;
-      --card-bg: #161f30;
-      --accent-color: #00e5ff;
-      --text-main: #f0f4f8;
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent-color: #00f2fe;
+      --accent-green: #10b981;
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --border-color: #24344d;
-      --success: #10b981;
-      --whatsapp-green: #25d366;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --border-color: #334155;
     }
 
     body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
-      padding-bottom: 70px;
+      margin: 0;
+      padding: 0;
     }
 
     header {
-      background: var(--card-bg);
-      padding: 1rem;
       text-align: center;
-      border-bottom: 1px solid var(--border-color);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      padding: 20px 10px 10px 10px;
     }
 
     header h1 {
-      font-size: 1.4rem;
+      margin: 0;
+      font-size: 1.8rem;
       color: var(--accent-color);
+    }
+
+    .ad-container {
+      text-align: center;
+      margin: 10px auto;
+      max-width: 600px;
+      padding: 0 15px;
     }
 
     .container {
       max-width: 600px;
       margin: 0 auto;
-      padding: 1rem;
+      padding: 15px;
     }
 
     .search-box {
-      margin-bottom: 1rem;
+      margin-bottom: 15px;
     }
 
-    .search-box input {
+    input, select {
       width: 100%;
-      padding: 0.8rem;
+      padding: 12px;
       border-radius: 8px;
       border: 1px solid var(--border-color);
-      background: var(--card-bg);
+      background-color: var(--card-bg);
       color: var(--text-main);
+      box-sizing: border-box;
       font-size: 1rem;
-    }
-
-    .filters {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .filters select {
-      flex: 1;
-      padding: 0.6rem;
-      border-radius: 6px;
-      border: 1px solid var(--border-color);
-      background: var(--card-bg);
-      color: var(--text-main);
+      margin-bottom: 10px;
     }
 
     .job-card {
-      background: var(--card-bg);
+      background-color: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
     }
 
     .job-title {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: bold;
-      color: var(--text-main);
-      margin-bottom: 0.2rem;
+      color: #ffffff;
+      margin-bottom: 4px;
     }
 
-    .job-company {
+    .company-name {
       color: var(--accent-color);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
-    .job-tags {
+    .tags {
       display: flex;
-      gap: 0.5rem;
       flex-wrap: wrap;
-      margin-bottom: 0.8rem;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
     .tag {
-      background: rgba(255,255,255,0.05);
+      background-color: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-color);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
       color: var(--text-muted);
     }
 
-    .job-desc {
-      font-size: 0.9rem;
+    .desc {
+      font-size: 0.95rem;
       color: var(--text-muted);
-      margin-bottom: 1rem;
       line-height: 1.4;
+      margin-bottom: 15px;
     }
 
-    .card-actions {
+    .btn-group {
       display: flex;
-      gap: 0.5rem;
+      gap: 10px;
     }
 
     .btn {
       flex: 1;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration: none;
+      padding: 10px;
       text-align: center;
-      font-size: 0.9rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
     }
 
     .btn-apply {
-      background: var(--accent-color);
+      background-color: var(--accent-color);
       color: #000;
     }
 
     .btn-share {
-      background: var(--whatsapp-green);
-      color: #fff;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--card-bg);
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      justify: space-around;
-      padding: 0.6rem;
-    }
-
-    .nav-item {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      text-decoration: none;
-      text-align: center;
+      background-color: var(--accent-green);
+      color: #ffffff;
     }
   </style>
 </head>
@@ -177,12 +143,14 @@
     <h1>NamJobs 🇳🇦</h1>
   </header>
 
+  <!-- AD CONTAINER BELOW HEADER -->
+  <div class="ad-container">
+    <script>(function(s){s.dataset.zone='11999024',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  </div>
+
   <div class="container">
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="Search title, company, or town..." onkeyup="filterJobs()">
-    </div>
-
-    <div class="filters">
       <select id="regionFilter" onchange="filterJobs()">
         <option value="">All Regions</option>
         <option value="Windhoek">Windhoek</option>
@@ -193,87 +161,73 @@
       </select>
     </div>
 
-    <div id="jobList"></div>
-  </div>
-
-  <div class="bottom-nav">
-    <a href="#" class="nav-item">🏠 Home Feed</a>
-    <a href="#" class="nav-item" onclick="fetchJobs()">🔄 Refresh Feed</a>
+    <div id="jobFeed">Loading vacancies...</div>
   </div>
 
   <script>
     let allJobs = [];
 
-    async function fetchJobs() {
+    async function loadJobs() {
       try {
-        const response = await fetch('jobs.json?t=' + new Date().getTime());
+        const response = await fetch('jobs.json?v=' + new Date().getTime());
         allJobs = await response.json();
-
-        const today = new Date();
-        allJobs = allJobs.map(job => {
-          const posted = new Date(job.postedDate);
-          const diffTime = Math.abs(today - posted);
-          const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-          return {
-            ...job,
-            daysAgo: isNaN(diffDays) ? 0 : diffDays
-          };
-        });
-
         renderJobs(allJobs);
       } catch (err) {
-        console.error('Error loading jobs.json:', err);
+        document.getElementById('jobFeed').innerHTML = '<p style="text-align:center;">Failed to load job listings.</p>';
       }
     }
 
     function renderJobs(jobs) {
-      const container = document.getElementById('jobList');
-      container.innerHTML = '';
-
-      if (jobs.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color: var(--text-muted);">No vacancies found.</p>';
+      const feed = document.getElementById('jobFeed');
+      if (!jobs || jobs.length === 0) {
+        feed.innerHTML = '<p style="text-align:center;">No vacancies found.</p>';
         return;
       }
 
-      jobs.forEach(job => {
-        let dateText = job.daysAgo === 0 ? 'Posted Today' : `Posted ${job.daysAgo} day(s) ago`;
-        let shareText = encodeURIComponent(`Check out this job opening: ${job.title} at ${job.company}! Apply here: https://namjobs-xi.vercel.app/`);
-
-        container.innerHTML += `
-          <div class="job-card">
-            <div class="job-title">${job.title}</div>
-            <div class="job-company">${job.company}</div>
-            <div class="job-tags">
-              <span class="tag">📍 ${job.location}</span>
-              <span class="tag">💼 ${job.type}</span>
-              <span class="tag">🕒 ${dateText}</span>
-            </div>
-            <div class="job-desc">${job.desc}</div>
-            <div class="card-actions">
-              <a href="${job.contact}" target="_blank" class="btn btn-apply">Apply Now</a>
-              <a href="https://wa.me/?text=${shareText}" target="_blank" class="btn btn-share">📲 Share</a>
-            </div>
+      feed.innerHTML = jobs.map(job => `
+        <div class="job-card">
+          <div class="job-title">${job.title}</div>
+          <div class="company-name">${job.company}</div>
+          <div class="tags">
+            <span class="tag">📍 ${job.location}</span>
+            <span class="tag">💼 ${job.type || 'Full-time'}</span>
+            <span class="tag">🕒 ${job.postedDate}</span>
           </div>
-        `;
-      });
+          <div class="desc">${job.desc}</div>
+          <div class="btn-group">
+            <a href="${job.contact}" target="_blank" class="btn btn-apply">Apply Now</a>
+            <button onclick="shareJob('${job.title}', '${job.contact}')" class="btn btn-share">📲 Share</button>
+          </div>
+        </div>
+      `).join('');
     }
 
     function filterJobs() {
-      const search = document.getElementById('searchInput').value.toLowerCase();
-      const region = document.getElementById('regionFilter').value;
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const region = document.getElementById('regionFilter').value.toLowerCase();
 
       const filtered = allJobs.filter(job => {
-        const matchesSearch = job.title.toLowerCase().includes(search) || 
-                              job.company.toLowerCase().includes(search) || 
-                              job.location.toLowerCase().includes(search);
-        const matchesRegion = region === '' || job.location.includes(region);
-        return matchesSearch && matchesRegion;
+        const matchesQuery = job.title.toLowerCase().includes(query) ||
+                             job.company.toLowerCase().includes(query) ||
+                             job.location.toLowerCase().includes(query);
+        const matchesRegion = !region || job.location.toLowerCase().includes(region);
+        return matchesQuery && matchesRegion;
       });
 
       renderJobs(filtered);
     }
 
-    fetchJobs();
+    function shareJob(title, url) {
+      if (navigator.share) {
+        navigator.share({ title: title, url: url });
+      } else {
+        navigator.clipboard.writeText(url);
+        alert('Link copied to clipboard!');
+      }
+    }
+
+    loadJobs();
   </script>
+
 </body>
 </html>
