@@ -4,10 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NamJobs - All Namibian Vacancies in One Place</title>
-
-  <!-- Monetag Monetization Script -->
-  <script src="https://quge5.com/88/tag.min.js" data-zone="291342" async data-cfasync="false"></script>
-
   <style>
     :root {
       --bg-color: #0b0f17;
@@ -34,13 +30,13 @@
     }
 
     header {
-      background: #111827;
-      padding: 16px;
-      border-bottom: 1px solid var(--border-color);
+      background: var(--card-bg);
+      padding: 1rem;
       text-align: center;
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
     }
 
     header h1 {
@@ -48,165 +44,123 @@
       color: var(--accent-color);
     }
 
-    header p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
     }
 
-    .search-section {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .search-box {
+      margin-bottom: 1rem;
     }
 
-    .input-box, select {
+    .search-box input {
       width: 100%;
-      padding: 12px;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
+      padding: 0.8rem;
       border-radius: 8px;
-      font-size: 0.9rem;
-      outline: none;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-main);
+      font-size: 1rem;
     }
 
-    .filter-row {
+    .filters {
       display: flex;
-      gap: 8px;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
 
-    .jobs-list {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .filters select {
+      flex: 1;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-main);
     }
 
     .job-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 14px;
-      position: relative;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
 
     .job-title {
       font-size: 1.1rem;
-      color: #fff;
-      margin-bottom: 4px;
-      font-weight: 600;
+      font-weight: bold;
+      color: var(--text-main);
+      margin-bottom: 0.2rem;
     }
 
     .job-company {
-      font-size: 0.85rem;
       color: var(--accent-color);
-      margin-bottom: 8px;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
     }
 
-    .job-meta {
+    .job-tags {
       display: flex;
+      gap: 0.5rem;
       flex-wrap: wrap;
-      gap: 8px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-bottom: 12px;
+      margin-bottom: 0.8rem;
     }
 
-    .badge {
-      background: #24344d;
-      padding: 4px 8px;
+    .tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-color);
+      padding: 0.2rem 0.5rem;
       border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
-    .badge-time {
-      background: rgba(16, 185, 129, 0.2);
-      color: var(--success);
+    .job-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.4;
     }
 
-    .btn-group {
+    .card-actions {
       display: flex;
-      gap: 8px;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      font-size: 0.9rem;
     }
 
     .btn-apply {
       background: var(--accent-color);
       color: #000;
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      font-size: 0.85rem;
-      font-weight: bold;
-      flex: 2;
-      text-align: center;
-      cursor: pointer;
     }
 
     .btn-share {
-      background: rgba(37, 211, 102, 0.15);
-      color: var(--whatsapp-green);
-      border: 1px solid var(--whatsapp-green);
-      padding: 10px;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: bold;
-      flex: 1;
-      text-align: center;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--whatsapp-green);
+      color: #fff;
     }
 
-    .modal {
-      display: none;
+    .bottom-nav {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      z-index: 100;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .modal-content {
+      bottom: 0;
+      left: 0;
+      right: 0;
       background: var(--card-bg);
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 500px;
-      margin: 40px auto;
-      border: 1px solid var(--border-color);
-    }
-
-    .close-btn {
-      float: right;
-      color: var(--text-muted);
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
-
-    .action-btn {
-      background: var(--accent-color);
-      color: #000;
-      padding: 12px;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      display: block;
-      margin-top: 12px;
-    }
-
-    nav.bottom-nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: #111827;
       border-top: 1px solid var(--border-color);
       display: flex;
-      justify-content: space-around;
-      padding: 12px 0;
-      z-index: 10;
+      justify: space-around;
+      padding: 0.6rem;
     }
 
     .nav-item {
@@ -214,7 +168,6 @@
       font-size: 0.8rem;
       text-decoration: none;
       text-align: center;
-      font-weight: 500;
     }
   </style>
 </head>
@@ -222,243 +175,105 @@
 
   <header>
     <h1>NamJobs 🇳🇦</h1>
-    <p>Live Namibian Vacancy Portal</p>
   </header>
 
-  <section class="search-section">
-    <input type="text" id="searchInput" class="input-box" placeholder="Search title, company, or town..." onkeyup="filterJobs()" />
-    
-    <div class="filter-row">
-      <select id="regionSelect" onchange="filterJobs()">
-        <option value="All">All Regions</option>
-        <option value="Windhoek">Windhoek (Khomas)</option>
-        <option value="Ongwediva">Ongwediva / Oshakati</option>
-        <option value="Walvis Bay">Walvis Bay / Swakopmund</option>
-        <option value="Rundu">Rundu / Kavango</option>
-      </select>
+  <div class="container">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search title, company, or town..." onkeyup="filterJobs()">
+    </div>
 
-      <select id="dateSelect" onchange="filterJobs()">
-        <option value="All">All Dates</option>
-        <option value="0">Posted Today</option>
-        <option value="1">Posted Yesterday</option>
-        <option value="3">Posted Last 3 Days</option>
+    <div class="filters">
+      <select id="regionFilter" onchange="filterJobs()">
+        <option value="">All Regions</option>
+        <option value="Windhoek">Windhoek</option>
+        <option value="Walvis Bay">Walvis Bay</option>
+        <option value="Swakopmund">Swakopmund</option>
+        <option value="Oshakati">Oshakati</option>
+        <option value="Rundu">Rundu</option>
       </select>
     </div>
-  </section>
 
-  <main class="jobs-list" id="jobsContainer">
-    <!-- Dynamic job cards will render here -->
-  </main>
-
-  <!-- Apply / Details Modal -->
-  <div id="applyModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeApplyModal()">&times;</span>
-      <h3 id="modalTitle" style="color: var(--accent-color); margin-bottom: 4px;"></h3>
-      <p id="modalCompany" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;"></p>
-      <hr style="border-color: var(--border-color); margin-bottom: 12px;" />
-      <p style="font-weight: bold; margin-bottom: 6px;">Requirements & Details:</p>
-      <p id="modalDesc" style="font-size: 0.9rem; line-height: 1.5; color: var(--text-main); margin-bottom: 16px;"></p>
-      <a id="modalActionBtn" href="#" target="_blank" class="action-btn">Proceed to Application</a>
-    </div>
+    <div id="jobList"></div>
   </div>
 
-  <nav class="bottom-nav">
-    <a href="#" class="nav-item" onclick="window.scrollTo(0,0)">🏠 Home Feed</a>
-    <a href="#" class="nav-item" onclick="location.reload()">🔄 Auto-Refresh Feed</a>
-  </nav>
+  <div class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Home Feed</a>
+    <a href="#" class="nav-item" onclick="fetchJobs()">🔄 Refresh Feed</a>
+  </div>
 
   <script>
-    // Live Namibian Job Database with dynamic aging logic
-    const baseVacancies = [
-      {
-        id: 101,
-        title: "Engineering Technician (Transmission)",
-        company: "NamPower (Pty) Ltd",
-        location: "Windhoek",
-        type: "Full-time",
-        daysOffset: 0,
-        desc: "Responsible for installation and maintenance of PLC systems, HF/VHF radio equipment, and aircraft warning lights. Diploma in Electronic Engineering required.",
-        contact: "https://recruitment.nampower.com.na/"
-      },
-      {
-        id: 102,
-        title: "Store Cashier & Customer Assistant",
-        company: "BUCO Building Supplies",
-        location: "Windhoek",
-        type: "Full-time",
-        daysOffset: 0,
-        desc: "Handling register point-of-sale systems, receiving payment, customer inquiries, and stock reconciliation. Grade 12 Certificate required.",
-        contact: "https://wa.me/264811002233?text=Hi,%20I'm%20applying%20for%20the%20BUCO%20Cashier%20Vacancy%20via%20NamJobs"
-      },
-      {
-        id: 103,
-        title: "Delivery Driver (Code B / C1 + PDP)",
-        company: "NamLogistics Express",
-        location: "Windhoek / Okahandja",
-        type: "Shift Work",
-        daysOffset: 0,
-        desc: "Transporting parcels between central hubs. Valid drivers license and PDP required with clean driving history.",
-        contact: "mailto:careers@namlogistics.com.na?subject=Application:%20Delivery%20Driver"
-      },
-      {
-        id: 104,
-        title: "Junior Mechanic & OBD Diagnostician",
-        company: "Oshana Auto Repairs",
-        location: "Ongwediva",
-        type: "Full-time",
-        daysOffset: 1,
-        desc: "Assisting with oil changes, brake replacements, intake runner diagnostics, and general servicing. WhatsApp garage team for interview.",
-        contact: "https://wa.me/264812233445?text=Hi,%20I'm%20applying%20for%20the%20Mechanic%20position%20in%20Ongwediva"
-      },
-      {
-        id: 105,
-        title: "Accounts Officer - Receivables",
-        company: "NAMFISA",
-        location: "Windhoek",
-        type: "Permanent",
-        daysOffset: 1,
-        desc: "Managing account reconciliations, invoicing, and debtor collections. Relevant Degree in Accounting or Finance required.",
-        contact: "https://jobs.mcidirecthire.com/AvailableVacancies/Index?Location=Windhoek"
-      },
-      {
-        id: 106,
-        title: "Client Service Coordinator",
-        company: "Bank Windhoek",
-        location: "Luderitz Branch",
-        type: "Full-time",
-        daysOffset: 1,
-        desc: "Assisting clients with banking solutions, queries, and digital banking onboarding. Grade 12 + 2 years customer service experience.",
-        contact: "https://careers.bankwindhoek.com.na/"
-      },
-      {
-        id: 107,
-        title: "Site Administrator",
-        company: "Ecowize Hygiene & Sanitation",
-        location: "Okahandja",
-        type: "Full-time",
-        daysOffset: 2,
-        desc: "Proactive administrator to support site operations, timesheets, and site inventory control.",
-        contact: "mailto:adverts@jobsnamibia.net?subject=Ecowize%20Site%20Admin"
-      },
-      {
-        id: 108,
-        title: "Accounts Payable Clerk",
-        company: "Rössing Uranium",
-        location: "Swakopmund",
-        type: "Contract",
-        daysOffset: 2,
-        desc: "Processing vendor payments, invoice auditing, and supplier ledger reconciliations. Certificate in Accounting required.",
-        contact: "https://jobsnamibia.net/"
-      },
-      {
-        id: 109,
-        title: "Sales Representative (Hardware)",
-        company: "Northern Supermarket",
-        location: "Ongwediva",
-        type: "Full-time",
-        daysOffset: 3,
-        desc: "Managing retail sales desk, assisting contractors, and coordinating warehouse dispatch.",
-        contact: "https://wa.me/264819988776?text=Hi,%20I'm%20applying%20for%20the%20Sales%20Rep%20Vacancy"
-      }
-    ];
+    let allJobs = [];
 
-    // Calculate dynamic dates automatically based on current date
-    function getLiveJobs() {
-      return baseVacancies.map(job => {
-        return {
-          ...job,
-          daysAgo: job.daysOffset
-        };
-      });
+    async function fetchJobs() {
+      try {
+        const response = await fetch('jobs.json?t=' + new Date().getTime());
+        allJobs = await response.json();
+
+        const today = new Date();
+        allJobs = allJobs.map(job => {
+          const posted = new Date(job.postedDate);
+          const diffTime = Math.abs(today - posted);
+          const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+          return {
+            ...job,
+            daysAgo: isNaN(diffDays) ? 0 : diffDays
+          };
+        });
+
+        renderJobs(allJobs);
+      } catch (err) {
+        console.error('Error loading jobs.json:', err);
+      }
     }
 
-    let allJobs = getLiveJobs();
-
-    function renderJobs(jobsToRender) {
-      const container = document.getElementById('jobsContainer');
+    function renderJobs(jobs) {
+      const container = document.getElementById('jobList');
       container.innerHTML = '';
 
-      if (jobsToRender.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color: var(--text-muted); padding: 30px;">No vacancies match your search.</p>';
+      if (jobs.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color: var(--text-muted);">No vacancies found.</p>';
         return;
       }
 
-      jobsToRender.forEach((job) => {
-        const timeText = job.daysAgo === 0 ? "Posted Today" : `Posted ${job.daysAgo} day(s) ago`;
-        const shareText = encodeURIComponent(`Check out this job vacancy on NamJobs: ${job.title} at ${job.company} (${job.location}). Apply here: ${window.location.href}`);
+      jobs.forEach(job => {
+        let dateText = job.daysAgo === 0 ? 'Posted Today' : `Posted ${job.daysAgo} day(s) ago`;
+        let shareText = encodeURIComponent(`Check out this job opening: ${job.title} at ${job.company}! Apply here: https://namjobs-xi.vercel.app/`);
 
-        const card = document.createElement('div');
-        card.className = 'job-card';
-        card.innerHTML = `
-          <div class="job-title">${job.title}</div>
-          <div class="job-company">${job.company}</div>
-          <div class="job-meta">
-            <span class="badge">📍 ${job.location}</span>
-            <span class="badge">💼 ${job.type}</span>
-            <span class="badge badge-time">🕒 ${timeText}</span>
-          </div>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;">${job.desc}</p>
-          <div class="btn-group">
-            <button class="btn-apply" onclick="openApplyModal(${job.id})">Apply Now</button>
-            <a href="https://wa.me/?text=${shareText}" target="_blank" class="btn-share">📲 Share</a>
+        container.innerHTML += `
+          <div class="job-card">
+            <div class="job-title">${job.title}</div>
+            <div class="job-company">${job.company}</div>
+            <div class="job-tags">
+              <span class="tag">📍 ${job.location}</span>
+              <span class="tag">💼 ${job.type}</span>
+              <span class="tag">🕒 ${dateText}</span>
+            </div>
+            <div class="job-desc">${job.desc}</div>
+            <div class="card-actions">
+              <a href="${job.contact}" target="_blank" class="btn btn-apply">Apply Now</a>
+              <a href="https://wa.me/?text=${shareText}" target="_blank" class="btn btn-share">📲 Share</a>
+            </div>
           </div>
         `;
-        container.appendChild(card);
       });
     }
 
     function filterJobs() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const region = document.getElementById('regionSelect').value;
-      const dateFilter = document.getElementById('dateSelect').value;
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const region = document.getElementById('regionFilter').value;
 
-      const filtered = allJobs.filter((job) => {
-        const matchesSearch = job.title.toLowerCase().includes(query) || 
-                              job.company.toLowerCase().includes(query) || 
-                              job.desc.toLowerCase().includes(query) ||
-                              job.location.toLowerCase().includes(query);
-
-        const matchesRegion = (region === 'All') || job.location.toLowerCase().includes(region.toLowerCase());
-        
-        let matchesDate = true;
-        if (dateFilter !== 'All') {
-          matchesDate = job.daysAgo <= parseInt(dateFilter);
-        }
-
-        return matchesSearch && matchesRegion && matchesDate;
+      const filtered = allJobs.filter(job => {
+        const matchesSearch = job.title.toLowerCase().includes(search) || 
+                              job.company.toLowerCase().includes(search) || 
+                              job.location.toLowerCase().includes(search);
+        const matchesRegion = region === '' || job.location.includes(region);
+        return matchesSearch && matchesRegion;
       });
 
       renderJobs(filtered);
     }
 
-    function openApplyModal(id) {
-      const job = allJobs.find(j => j.id === id);
-      if (!job) return;
-
-      document.getElementById('modalTitle').innerText = job.title;
-      document.getElementById('modalCompany').innerText = `${job.company} • ${job.location}`;
-      document.getElementById('modalDesc').innerText = job.desc;
-      
-      const actionBtn = document.getElementById('modalActionBtn');
-      actionBtn.href = job.contact;
-
-      if(job.contact.includes('wa.me')) {
-        actionBtn.innerText = "Apply via WhatsApp";
-      } else if(job.contact.includes('mailto:')) {
-        actionBtn.innerText = "Apply via Email";
-      } else {
-        actionBtn.innerText = "Go to Official Portal";
-      }
-
-      document.getElementById('applyModal').style.display = 'block';
-    }
-
-    function closeApplyModal() {
-      document.getElementById('applyModal').style.display = 'none';
-    }
-
-    renderJobs(allJobs);
+    fetchJobs();
   </script>
 </body>
 </html>
