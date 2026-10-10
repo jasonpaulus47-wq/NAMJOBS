@@ -1,6 +1,6 @@
 [
   {
-    "id": "1",
+    "id": "starter-1",
     "title": "Engineering Technician (Transmission)",
     "company": "NamPower (Pty) Ltd",
     "location": "Windhoek",
@@ -10,7 +10,7 @@
     "contact": "https://www.nampower.com.na/Careers.aspx"
   },
   {
-    "id": "2",
+    "id": "starter-2",
     "title": "Store Cashier & Customer Assistant",
     "company": "BUCO Building Supplies",
     "location": "Windhoek",
