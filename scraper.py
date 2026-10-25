@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 def scrape_jobs():
     scraped_jobs = []
     
-    # 1. RSS / XML Scraper Feed for Live Jobs
+    # Target public RSS / XML feeds for live Namibian vacancies
     rss_urls = [
         "https://www.namijob.com/rss.xml",
         "https://namibianjob.com/feed/"
@@ -21,28 +21,27 @@ def scrape_jobs():
             res = requests.get(feed_url, headers=headers, timeout=12)
             if res.status_code == 200:
                 root = ET.fromstring(res.content)
-                for index, item in enumerate(root.findall('.//item')):
+                for item in root.findall('.//item'):
                     title = item.find('title')
                     link = item.find('link')
-                    pub_date = item.find('pubDate')
                     
-                    title_text = title.text.strip() if title is not None else "Namibian Vacancy"
-                    link_url = link.text.strip() if link is not None else "https://www.namijob.com"
+                    title_text = title.text.strip() if title is not None and title.text else "Namibian Vacancy"
+                    link_url = link.text.strip() if link is not None and link.text else "https://www.namijob.com"
                     
                     scraped_jobs.append({
                         "id": f"live-{len(scraped_jobs)+1}",
                         "title": title_text,
-                        "company": "Verified Advertiser",
+                        "company": "Verified Employer",
                         "location": "Namibia",
                         "type": "Full-time",
-                        "postedDate": "Posted Recently",
-                        "desc": "Tap 'Apply Now' to view full details, requirements, and application instructions.",
+                        "postedDate": str(datetime.date.today()),
+                        "desc": "Tap 'Apply Now' to view full details, requirements, and official application instructions.",
                         "contact": link_url
                     })
         except Exception as e:
             print(f"Feed error for {feed_url}: {e}")
 
-    # 2. Backup Starter Jobs (Kept at the bottom so feed is never empty)
+    # Fallback backup listings (Kept at the bottom so feed is never empty)
     fallback_jobs = [
         {
             "id": "starter-1",
@@ -66,12 +65,14 @@ def scrape_jobs():
         }
     ]
 
-    # Combine live scraped jobs at the top + fallback jobs at the bottom
+    # Combine scraped online jobs at top + fallbacks at bottom
     final_jobs = scraped_jobs + fallback_jobs
 
-    # Save directly to jobs.json
+    # Write directly to jobs.json
     with open('jobs.json', 'w', encoding='utf-8') as f:
         json.dump(final_jobs, f, indent=2)
+    
+    print(f"Successfully saved {len(final_jobs)} jobs to jobs.json!")
 
 if __name__ == "__main__":
     scrape_jobs()
