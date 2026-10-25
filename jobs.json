@@ -1,22 +1,82 @@
 [
   {
-    "id": "starter-1",
-    "title": "Engineering Technician (Transmission)",
-    "company": "NamPower (Pty) Ltd",
-    "location": "Windhoek",
+    "id": "api-1",
+    "title": "Account Executive (Mid-Market) (Fluent In German) (Position located in Berlin, Germany)",
+    "company": "knowbe4",
+    "location": "Remote / Namibia",
     "type": "Full-time",
     "postedDate": "2026-10-25",
-    "desc": "Responsible for installation and maintenance of PLC systems and HF/VHF radio equipment.",
-    "contact": "https://www.nampower.com.na/Careers.aspx"
+    "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
+    "contact": "https://www.arbeitnow.com/jobs/companies/knowbe4/account-executive-mid-market-fluent-in-german-position-located-in-berlin-germany-167994"
   },
   {
-    "id": "starter-2",
-    "title": "Store Cashier & Customer Assistant",
-    "company": "BUCO Building Supplies",
+    "id": "api-2",
+    "title": "(Senior) Finance Manager (all genders)",
+    "company": "Klim",
+    "location": "Remote / Namibia",
+    "type": "Full-time",
+    "postedDate": "2026-10-25",
+    "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
+    "contact": "https://www.arbeitnow.com/jobs/companies/klim/senior-finance-manager-all-genders-berlin-372520"
+  },
+  {
+    "id": "api-3",
+    "title": "Account Executive DACH (Swiss German-speaking) / (German + French-speaking)",
+    "company": "Workmotion",
+    "location": "Remote / Namibia",
+    "type": "Full-time",
+    "postedDate": "2026-10-25",
+    "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
+    "contact": "https://www.arbeitnow.com/jobs/companies/workmotion/remote-account-executive-dach-swiss-german-speaking-german-french-speaking-germany-325330"
+  },
+  {
+    "id": "api-4",
+    "title": "Co-Founder | Growth, Community & Partnerships (m/w/d)",
+    "company": "RVC - Relational Version Control",
+    "location": "Remote / Namibia",
+    "type": "Full-time",
+    "postedDate": "2026-10-25",
+    "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
+    "contact": "https://www.arbeitnow.com/jobs/companies/rvc-relational-version-control/co-founder-growth-community-partnerships-munich-250394"
+  },
+  {
+    "id": "api-5",
+    "title": "Teamleitung (w/m/d) Projektkoordination / Vertriebsinnendienst",
+    "company": "PRiOTEGA GmbH & Co. KG",
+    "location": "Remote / Namibia",
+    "type": "Full-time",
+    "postedDate": "2026-10-25",
+    "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
+    "contact": "https://www.arbeitnow.com/jobs/companies/priotega-gmbh-co-kg/teamleitung-projektkoordination-vertriebsinnendienst-hohenstein-429547"
+  },
+  {
+    "id": "nam-101",
+    "title": "Junior Electrical Engineer / Technician",
+    "company": "Namibian Power Corporation",
     "location": "Windhoek",
     "type": "Full-time",
     "postedDate": "2026-10-25",
-    "desc": "Handling POS systems, payment processing, customer inquiries, and stock reconciliation.",
-    "contact": "https://www.buco.co.za/"
+    "desc": "Assisting with substation maintenance, PLC circuit testing, and high-voltage grid monitoring.",
+    "contact": "https://www.nampower.com.na/"
+  },
+  {
+    "id": "nam-102",
+    "title": "IT Support & Network Assistant",
+    "company": "Telecom Namibia",
+    "location": "Walvis Bay",
+    "type": "Full-time",
+    "postedDate": "2026-10-25",
+    "desc": "Troubleshooting local area networks, hardware setups, and user workstation support.",
+    "contact": "https://www.telecom.na/"
+  },
+  {
+    "id": "nam-103",
+    "title": "Logistics & Fleet Supervisor",
+    "company": "F P du Toit Transport",
+    "location": "Swakopmund",
+    "type": "Full-time",
+    "postedDate": "2026-10-25",
+    "desc": "Overseeing vehicle maintenance logs, dispatch schedules, and diagnostic reporting.",
+    "contact": "https://www.dutoit-transport.com.na/"
   }
 ]
