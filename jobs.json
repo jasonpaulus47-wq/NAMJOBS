@@ -1,53 +1,53 @@
 [
   {
     "id": "api-1",
-    "title": "Grafiker (m/w/d)",
-    "company": "Zet B Werbung und Marketing GmbH",
+    "title": "Test Engineer (f/m/d)",
+    "company": "Think Cell",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-10-26",
+    "postedDate": "2026-10-27",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/zet-b-werbung-und-marketing-gmbh/grafiker-stuttgart-323170"
+    "contact": "https://www.arbeitnow.com/jobs/companies/think-cell/test-engineer-70162"
   },
   {
     "id": "api-2",
-    "title": "Projektmanager (m/w/d) Power BI mit Entscheidungsbefugnis",
-    "company": "Weiler Consult GmbH",
+    "title": "Senior Software Engineer",
+    "company": "Auterion",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-10-26",
+    "postedDate": "2026-10-27",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/weiler-consult-gmbh/projektmanager-power-bi-mit-entscheidungsbefugnis-berlin-425898"
+    "contact": "https://www.arbeitnow.com/jobs/companies/auterion/senior-software-engineer-munich-365741"
   },
   {
     "id": "api-3",
-    "title": "Customer Success Manager (m/w/d) Power BI mit Entscheidungsbefugnis",
-    "company": "Weiler Consult GmbH",
+    "title": "Forward Deployed Engineer",
+    "company": "Auterion",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-10-26",
+    "postedDate": "2026-10-27",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/weiler-consult-gmbh/customer-success-manager-power-bi-mit-entscheidungsbefugnis-berlin-404293"
+    "contact": "https://www.arbeitnow.com/jobs/companies/auterion/forward-deployed-engineer-munich-444941"
   },
   {
     "id": "api-4",
-    "title": "Account Manager (m/w/d) Power BI, Customer Success mit Entscheidungsbefugnis",
-    "company": "Weiler Consult GmbH",
+    "title": "Technical Product Manager",
+    "company": "Swarmaero",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-10-26",
+    "postedDate": "2026-10-27",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/weiler-consult-gmbh/account-manager-power-bi-customer-success-mit-entscheidungsbefugnis-berlin-273076"
+    "contact": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-technical-product-manager-132288"
   },
   {
     "id": "api-5",
-    "title": "Consultant (m/w/d) Power BI, Customer Success mit Entscheidungsbefugnis",
-    "company": "Weiler Consult GmbH",
+    "title": "Product Designer",
+    "company": "Swarmaero",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-10-26",
+    "postedDate": "2026-10-27",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/weiler-consult-gmbh/consultant-power-bi-customer-success-mit-entscheidungsbefugnis-berlin-383992"
+    "contact": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-product-designer-15490"
   },
   {
     "id": "nam-101",
@@ -55,7 +55,7 @@
     "company": "Namibian Power Corporation",
     "location": "Windhoek",
     "type": "Full-time",
-    "postedDate": "2026-10-26",
+    "postedDate": "2026-10-27",
     "desc": "Assisting with substation maintenance, PLC circuit testing, and high-voltage grid monitoring.",
     "contact": "https://www.nampower.com.na/"
   },
@@ -65,7 +65,7 @@
     "company": "Telecom Namibia",
     "location": "Walvis Bay",
     "type": "Full-time",
-    "postedDate": "2026-10-26",
+    "postedDate": "2026-10-27",
     "desc": "Troubleshooting local area networks, hardware setups, and user workstation support.",
     "contact": "https://www.telecom.na/"
   },
@@ -75,7 +75,7 @@
     "company": "F P du Toit Transport",
     "location": "Swakopmund",
     "type": "Full-time",
-    "postedDate": "2026-10-26",
+    "postedDate": "2026-10-27",
     "desc": "Overseeing vehicle maintenance logs, dispatch schedules, and diagnostic reporting.",
     "contact": "https://www.dutoit-transport.com.na/"
   }
