@@ -1,53 +1,53 @@
 [
   {
     "id": "api-1",
-    "title": "Talent Acquisition Intern",
-    "company": "trawa",
+    "title": "Senior DevOps Engineer",
+    "company": "Catapult Sports",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-11-08",
+    "postedDate": "2026-11-09",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/trawa/talent-acquisition-intern-berlin-417738"
+    "contact": "https://www.arbeitnow.com/jobs/companies/catapult-sports/senior-devops-engineer-cologne-378538"
   },
   {
     "id": "api-2",
-    "title": "B2B Marketing - India",
-    "company": "ElevenLabs",
+    "title": "Praktikant (m/w/d) \u2013 Produktentwicklung & Datenaufbereitung",
+    "company": "CERTUSS GmbH",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-11-08",
+    "postedDate": "2026-11-09",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/elevenlabs/remote-b2b-marketing-india-333238"
+    "contact": "https://www.arbeitnow.com/jobs/companies/certuss-gmbh/praktikant-produktentwicklung-datenaufbereitung-krefeld-44474"
   },
   {
     "id": "api-3",
-    "title": "GTM Enablement - Global Onboarding & Operations",
-    "company": "ElevenLabs",
+    "title": "Servicemitarbeiter:in (m/w/d) in Teilzeit und Werkstudent:in",
+    "company": "The Bellezza Group",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-11-08",
+    "postedDate": "2026-11-09",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/elevenlabs/remote-gtm-enablement-global-onboarding-operations-110256"
+    "contact": "https://www.arbeitnow.com/jobs/companies/the-bellezza-group/servicemitarbeiterin-in-teilzeit-und-werkstudentin-the-italian-shot-maxvorstadt-munchen-413069"
   },
   {
     "id": "api-4",
-    "title": "GTM Enablement - Partner Program",
-    "company": "ElevenLabs",
+    "title": "Strategic Valuation & Modeling - Senior Manager",
+    "company": "EIGHT ADVISORY SAS",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-11-08",
+    "postedDate": "2026-11-09",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/elevenlabs/remote-gtm-enablement-partner-program-77337"
+    "contact": "https://www.arbeitnow.com/jobs/companies/eight-advisory-sas/strategic-valuation-modeling-senior-manager-frankfurt-am-main-466235"
   },
   {
     "id": "api-5",
-    "title": "iOS Engineer - Creative App",
-    "company": "ElevenLabs",
+    "title": "Senior Group Quality Expert (m/f/d)",
+    "company": "SGB-SMIT Group",
     "location": "Remote / Namibia",
     "type": "Full-time",
-    "postedDate": "2026-11-08",
+    "postedDate": "2026-11-09",
     "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
-    "contact": "https://www.arbeitnow.com/jobs/companies/elevenlabs/remote-ios-engineer-creative-app-27267"
+    "contact": "https://www.arbeitnow.com/jobs/companies/sgb-smit-group/senior-group-quality-expert-regensburg-88681"
   },
   {
     "id": "nam-101",
@@ -55,7 +55,7 @@
     "company": "Namibian Power Corporation",
     "location": "Windhoek",
     "type": "Full-time",
-    "postedDate": "2026-11-08",
+    "postedDate": "2026-11-09",
     "desc": "Assisting with substation maintenance, PLC circuit testing, and high-voltage grid monitoring.",
     "contact": "https://www.nampower.com.na/"
   },
@@ -65,7 +65,7 @@
     "company": "Telecom Namibia",
     "location": "Walvis Bay",
     "type": "Full-time",
-    "postedDate": "2026-11-08",
+    "postedDate": "2026-11-09",
     "desc": "Troubleshooting local area networks, hardware setups, and user workstation support.",
     "contact": "https://www.telecom.na/"
   },
@@ -75,7 +75,7 @@
     "company": "F P du Toit Transport",
     "location": "Swakopmund",
     "type": "Full-time",
-    "postedDate": "2026-11-08",
+    "postedDate": "2026-11-09",
     "desc": "Overseeing vehicle maintenance logs, dispatch schedules, and diagnostic reporting.",
     "contact": "https://www.dutoit-transport.com.na/"
   }
