@@ -1,29 +1,82 @@
 [
   {
-    "title": "General Workers, Drivers & Clerks (Ongoing Intake)",
-    "company": "NIEIS - Ministry of Labour Namibia",
-    "location": "Windhoek / Nationwide",
+    "title": "NIEIS National Job & Internship Portal (All Regions)",
+    "company": "Ministry of Labour, Industrial Relations & Employment Creation",
+    "location": "Windhoek",
     "type": "General",
     "postedDate": "2026-11-18",
-    "desc": "Register your profile and apply directly for verified government and private sector vacancies across all 14 regions of Namibia.",
-    "contact": "https://nieis.namibiaatwork.gov.na/"
+    "desc": "Official Namibian government employment portal for general workers, drivers, clerks, artisans, and graduates.",
+    "contact": "https://nieis.namibiaatwork.gov.na/",
+    "id": "job-1"
   },
   {
-    "title": "Graduate Internships & Trainee Programs",
-    "company": "Namibia Job Opportunities Portal",
+    "title": "Engineering & Technical Student Internships / In-Service Training",
+    "company": "NamPower (Namibia Power Corporation)",
     "location": "Windhoek",
     "type": "Internship",
     "postedDate": "2026-11-18",
-    "desc": "Browse the latest internships, vocational attachments, and entry-level roles for Namibian students and graduates.",
-    "contact": "https://www.jobportunities.net/"
+    "desc": "Bursaries, graduate-in-training, and vocational attachment opportunities for NUST, UNAM & VTC students.",
+    "contact": "https://www.nampower.com.na/Careers.aspx",
+    "id": "job-2"
   },
   {
-    "title": "Retail, Logistics & Mining Vacancies",
-    "company": "Careers in Namibia",
-    "location": "Walvis Bay / Swakopmund / Windhoek",
+    "title": "Graduate Trainee & IT Internship Programme",
+    "company": "Telecom Namibia",
+    "location": "Walvis Bay",
+    "type": "Internship",
+    "postedDate": "2026-11-18",
+    "desc": "Student attachment and graduate opportunities in telecommunications, networking, and customer operations.",
+    "contact": "https://www.telecom.na/careers",
+    "id": "job-3"
+  },
+  {
+    "title": "Mining, Artisan & Engineering Apprenticeships",
+    "company": "Rössing Uranium / Swakop Uranium",
+    "location": "Swakopmund",
+    "type": "Internship",
+    "postedDate": "2026-11-18",
+    "desc": "Apprenticeships, engineering graduate programmes, and technical roles in the Erongo region.",
+    "contact": "https://www.rossing.com/careers.htm",
+    "id": "job-4"
+  },
+  {
+    "title": "Northern Region Retail, Warehouse & General Support Vacancies",
+    "company": "Pupkewitz Group Namibia",
+    "location": "Oshakati",
+    "type": "General",
+    "postedDate": "2026-11-18",
+    "desc": "Sales assistants, drivers, warehouse packers, and branch administrators across northern Namibia.",
+    "contact": "https://www.pupkewitz.com/careers",
+    "id": "job-5"
+  },
+  {
+    "title": "Kavango East Health, Admin & Community Field Opportunities",
+    "company": "IntraHealth / Namibia Health Programmes",
+    "location": "Rundu",
     "type": "Full-time",
     "postedDate": "2026-11-18",
-    "desc": "Direct applications for Erongo and Khomas region employers. Tap 'Apply Here' to go straight to the local listing.",
-    "contact": "https://www.careers.com.na/"
+    "desc": "Data clerks, community field officers, and administrative roles based in Rundu and surrounding districts.",
+    "contact": "https://www.jobportunities.net/",
+    "id": "job-6"
+  },
+  {
+    "title": "Electrical & Mechanical Plant Attachment",
+    "company": "Ohorongo Cement",
+    "location": "Tsumeb",
+    "type": "Internship",
+    "postedDate": "2026-11-18",
+    "desc": "Practical industrial attachment and artisan vacancies in the Oshikoto region.",
+    "contact": "https://www.ohorongo-cement.com/careers/",
+    "id": "job-7"
+  },
+  {
+    "title": "Banking Graduate Programme & Teller Vacancies",
+    "company": "FNB Namibia (FirstRand Namibia)",
+    "location": "Ongwediva",
+    "type": "Graduate",
+    "postedDate": "2026-11-18",
+    "desc": "Entry-level branch roles and graduate development programmes for UNAM, NUST, and IUM graduates.",
+    "contact": "https://www.fnbnamibia.com.na/careers/",
+    "id": "job-8"
   }
 ]
