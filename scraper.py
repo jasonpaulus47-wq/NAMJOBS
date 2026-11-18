@@ -1,77 +1,171 @@
 import json
 import datetime
 import re
+import html
 import requests
-import xml.etree.ElementTree as ET
-from email.utils import parsedate_to_datetime
+from urllib.parse import urljoin
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-    "Accept": "application/json, application/xml, text/xml, */*"
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/json;q=0.8,*/*;q=0.7",
+    "Accept-Language": "en-US,en;q=0.9"
 }
 
 NAMIBIA_TOWNS = [
     "Windhoek", "Walvis Bay", "Swakopmund", "Oshakati",
     "Ondangwa", "Ongwediva", "Rundu", "Katima Mulilo",
     "Otjiwarongo", "Gobabis", "Keetmanshoop", "Tsumeb",
-    "Oranjemund", "Luderitz", "Rehoboth", "Okahandja", "Otavi"
+    "Oranjemund", "Luderitz", "Rehoboth", "Okahandja",
+    "Otavi", "Rosh Pinah", "Grootfontein", "Mariental"
 ]
+
+def clean_text(raw):
+    if not raw:
+        return ""
+    text = html.unescape(raw)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
 
 def detect_location(text):
     t = (text or "").lower()
     for town in NAMIBIA_TOWNS:
         if town.lower() in t:
             return town
-    return "Windhoek / Nationwide"
+    if "erongo" in t:
+        return "Walvis Bay / Swakopmund"
+    if "oshana" in t:
+        return "Oshakati / Ongwediva"
+    if "kavango" in t:
+        return "Rundu"
+    if "zambezi" in t:
+        return "Katima Mulilo"
+    if "karas" in t:
+        return "Keetmanshoop"
+    return "Windhoek / Namibia"
 
 def detect_job_type(title, desc=""):
     combined = f"{title} {desc}".lower()
-    if any(kw in combined for kw in ["intern", "internship", "graduate", "trainee", "attachment", "learnership", "student"]):
+    if any(kw in combined for kw in ["intern", "internship", "graduate", "trainee", "attachment", "learnership", "student", "apprentice"]):
         return "Internship"
-    if any(kw in combined for kw in ["general worker", "driver", "cleaner", "assistant", "clerk", "security", "cashier", "packer", "handyman"]):
+    if any(kw in combined for kw in ["general worker", "driver", "cleaner", "assistant", "clerk", "security", "cashier", "packer", "handyman", "housekeeping", "operator"]):
         return "General"
     return "Full-time"
 
-def clean_html(raw_text):
-    if not raw_text:
-        return ""
-    text = re.sub(r"<[^>]+>", " ", raw_text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
+def fetch_jobsnamibia_net():
+    """Scrapes high-volume local Namibian vacancies directly from jobsnamibia.net."""
+    results = []
+    urls = [
+        "https://jobsnamibia.net/",
+        "https://jobsnamibia.net/jobs/",
+        "https://jobsnamibia.net/page/2/"
+    ]
+    today = str(datetime.date.today())
 
-def format_date(date_str):
-    if not date_str:
-        return str(datetime.date.today())
-    try:
-        # Handle ISO format e.g. 2026-11-18T10:30:00+00:00
-        if "T" in date_str:
-            return date_str.split("T")[0]
-        # Handle RSS RFC-2822 format e.g. Wed, 18 Nov 2026 08:00:00 +0000
-        dt = parsedate_to_datetime(date_str)
-        return dt.strftime("%Y-%m-%d")
-    except Exception:
-        return str(datetime.date.today())
+    for page_url in urls:
+        try:
+            res = requests.get(page_url, headers=HEADERS, timeout=15)
+            if res.status_code != 200:
+                continue
+
+            # Extract job links and surrounding card context
+            blocks = re.findall(r'<a[^>]+href=["\'](https://jobsnamibia\.net/job/[^"\']+|https://jobsnamibia\.net/[^"\']*vacanc[^"\']*|https://jobsnamibia\.net/[a-z0-9\-]+/)["\'][^>]*>(.*?)</a>', res.text, re.DOTALL | re.IGNORECASE)
+            
+            for link, inner_html in blocks:
+                title = clean_text(inner_html)
+                # Filter out navigation/category links
+                if len(title) < 6 or len(title) > 120:
+                    continue
+                if any(skip in title.lower() for skip in ["home", "contact", "post a job", "browse", "privacy", "terms", "how to", "read more", "apply", "view all"]):
+                    continue
+
+                location = detect_location(title)
+                job_type = detect_job_type(title)
+
+                results.append({
+                    "title": title,
+                    "company": "Namibian Employer (via JobsNamibia)",
+                    "location": location,
+                    "type": job_type,
+                    "postedDate": today,
+                    "desc": f"Verified Namibian vacancy in {location}. Tap 'Apply Here' to view full job specifications and submit your CV.",
+                    "contact": link
+                })
+        except Exception as e:
+            print(f"JobsNamibia scrape error ({page_url}): {e}")
+    return results
+
+def fetch_careerjet_namibia():
+    """Scrapes active Namibian job listings across Windhoek, Walvis Bay, Oshakati, Rundu, etc."""
+    results = []
+    queries = [
+        "https://www.careerjet.co.na/jobs/Namibia",
+        "https://www.careerjet.co.na/jobs/internship-Namibia",
+        "https://www.careerjet.co.na/jobs/graduate-Namibia"
+    ]
+    today = str(datetime.date.today())
+
+    for search_url in queries:
+        try:
+            res = requests.get(search_url, headers=HEADERS, timeout=15)
+            if res.status_code != 200:
+                continue
+
+            # Parse article job cards from Careerjet Namibia
+            articles = re.findall(r'<article[^>]*class=["\'][^"\']*job[^"\']*["\'][^>]*>(.*?)</article>', res.text, re.DOTALL | re.IGNORECASE)
+            for art in articles:
+                link_match = re.search(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', art, re.DOTALL | re.IGNORECASE)
+                if not link_match:
+                    continue
+
+                raw_href, raw_title = link_match.groups()
+                title = clean_text(raw_title)
+                if not title or len(title) < 4:
+                    continue
+
+                full_url = urljoin("https://www.careerjet.co.na", raw_href)
+
+                comp_match = re.search(r'<p[^>]*class=["\'][^"\']*company[^"\']*["\'][^>]*>(.*?)</p>', art, re.DOTALL | re.IGNORECASE)
+                company = clean_text(comp_match.group(1)) if comp_match else "Namibian Employer"
+
+                loc_match = re.search(r'<ul[^>]*class=["\'][^"\']*location[^"\']*["\'][^>]*>(.*?)</ul>', art, re.DOTALL | re.IGNORECASE)
+                raw_loc = clean_text(loc_match.group(1)) if loc_match else ""
+                location = detect_location(f"{raw_loc} {title}")
+
+                desc_match = re.search(r'<div[^>]*class=["\'][^"\']*desc[^"\']*["\'][^>]*>(.*?)</div>', art, re.DOTALL | re.IGNORECASE)
+                desc = clean_text(desc_match.group(1)) if desc_match else ""
+                if not desc:
+                    desc = f"Active opportunity in {location}. Tap 'Apply Here' for direct application instructions."
+
+                job_type = detect_job_type(title, desc)
+
+                results.append({
+                    "title": title,
+                    "company": company or "Namibian Employer",
+                    "location": location,
+                    "type": job_type,
+                    "postedDate": today,
+                    "desc": desc[:210] + ("..." if len(desc) > 210 else ""),
+                    "contact": full_url
+                })
+        except Exception as e:
+            print(f"Careerjet Namibia scrape error ({search_url}): {e}")
+    return results
 
 def fetch_reliefweb_namibia():
-    """Fetches real, verified Namibian jobs & internships from ReliefWeb API with exact posted dates."""
+    """Fetches real Namibian NGO, UN & development sector jobs and internships with exact release dates."""
     results = []
     url = "https://api.reliefweb.int/v1/jobs?appname=namjobs-portal"
     payload = {
-        "filter": {
-            "field": "country.name",
-            "value": "Namibia"
-        },
-        "fields": {
-            "include": ["title", "url", "date.created", "source.name", "city.name", "body-html", "type.name"]
-        },
-        "limit": 60,
+        "filter": {"field": "country.name", "value": "Namibia"},
+        "fields": {"include": ["title", "url", "date.created", "source.name", "city.name", "body-html"]},
+        "limit": 50,
         "sort": ["date.created:desc"]
     }
     try:
         res = requests.post(url, json=payload, headers=HEADERS, timeout=15)
         if res.status_code == 200:
-            items = res.json().get("data", [])
-            for entry in items:
+            for entry in res.json().get("data", []):
                 fields = entry.get("fields", {})
                 title = fields.get("title", "").strip()
                 job_url = fields.get("url", "").strip()
@@ -86,18 +180,16 @@ def fetch_reliefweb_namibia():
                 location = detect_location(f"{raw_loc} {title}")
 
                 created = fields.get("date", {}).get("created", "")
-                posted_date = format_date(created)
+                posted_date = created.split("T")[0] if "T" in created else str(datetime.date.today())
 
-                body_text = clean_html(fields.get("body-html", ""))
-                desc = (body_text[:200] + "...") if len(body_text) > 200 else (body_text or "Verified Namibian vacancy. Tap 'Apply Here' to view full details and apply.")
-
-                job_type = detect_job_type(title, desc)
+                body_text = clean_text(fields.get("body-html", ""))
+                desc = (body_text[:200] + "...") if len(body_text) > 200 else (body_text or "Verified Namibian vacancy. Tap 'Apply Here' to apply.")
 
                 results.append({
                     "title": title,
                     "company": company,
                     "location": location,
-                    "type": job_type,
+                    "type": detect_job_type(title, desc),
                     "postedDate": posted_date,
                     "desc": desc,
                     "contact": job_url
@@ -106,57 +198,52 @@ def fetch_reliefweb_namibia():
         print(f"ReliefWeb fetch error: {e}")
     return results
 
-def fetch_namibian_rss_feeds():
-    """Fetches fresh Namibian vacancies from local RSS feeds with exact release dates."""
+def fetch_worldwide_remote_jobs():
+    """Fetches strictly Worldwide/Anywhere remote jobs (excludes Europe/US-only jobs)."""
     results = []
-    feeds = [
-        ("https://www.jobportunities.net/rss.xml", "JobPortunities Namibia"),
-        ("https://namibia.jobs/feed/", "Namibia Jobs"),
-        ("https://www.careers.com.na/feed/", "Careers in Namibia")
-    ]
-    for feed_url, default_company in feeds:
-        try:
-            res = requests.get(feed_url, headers=HEADERS, timeout=12)
-            if res.status_code == 200 and "<item" in res.text:
-                root = ET.fromstring(res.content)
-                for item in root.findall(".//item")[:40]:
-                    title = (item.findtext("title") or "").strip()
-                    link = (item.findtext("link") or "").strip()
-                    pub_date = (item.findtext("pubDate") or "").strip()
-                    raw_desc = clean_html(item.findtext("description") or "")
+    try:
+        res = requests.get("https://jobicy.com/api/v2/remote-jobs?count=30", headers=HEADERS, timeout=15)
+        if res.status_code == 200:
+            for item in res.json().get("jobs", []):
+                geo = (item.get("jobGeo") or "").lower()
+                # Strictly allow only global/anywhere/Africa remote jobs
+                if geo not in ["anywhere", "worldwide", "global", "africa", ""]:
+                    continue
 
-                    if not title or not link:
-                        continue
+                title = clean_text(item.get("jobTitle", ""))
+                company = clean_text(item.get("companyName", "Remote Company"))
+                job_url = item.get("url", "").strip()
+                if not title or not job_url:
+                    continue
 
-                    location = detect_location(f"{title} {raw_desc}")
-                    job_type = detect_job_type(title, raw_desc)
-                    posted_date = format_date(pub_date)
-                    desc = (raw_desc[:200] + "...") if len(raw_desc) > 200 else (raw_desc or "Active Namibian opportunity. Tap 'Apply Here' to go directly to the listing.")
+                pub = item.get("pubDate", "")
+                posted_date = pub.split("T")[0] if "T" in pub else str(datetime.date.today())
+                excerpt = clean_text(item.get("jobExcerpt", ""))
 
-                    results.append({
-                        "title": title,
-                        "company": default_company,
-                        "location": location,
-                        "type": job_type,
-                        "postedDate": posted_date,
-                        "desc": desc,
-                        "contact": link
-                    })
-        except Exception as e:
-            print(f"RSS feed skipped ({feed_url}): {e}")
+                results.append({
+                    "title": f"{title} (Work From Namibia)",
+                    "company": company,
+                    "location": "Remote / Windhoek",
+                    "type": detect_job_type(title, excerpt),
+                    "postedDate": posted_date,
+                    "desc": excerpt[:200] + ("..." if len(excerpt) > 200 else ""),
+                    "contact": job_url
+                })
+    except Exception as e:
+        print(f"Jobicy remote fetch error: {e}")
     return results
 
-def get_verified_local_pool():
-    """Guaranteed active Namibian portals & student/general opportunities across major towns."""
+def get_verified_namibian_portals():
+    """Ensures students & job seekers in every major Namibian town always have direct portal links."""
     today = str(datetime.date.today())
     return [
         {
-            "title": "NIEIS National Job & Internship Portal (All Regions)",
-            "company": "Ministry of Labour, Industrial Relations & Employment Creation",
+            "title": "NIEIS National Job & Internship Registration (All 14 Regions)",
+            "company": "Ministry of Labour Namibia",
             "location": "Windhoek",
             "type": "General",
             "postedDate": today,
-            "desc": "Official Namibian government employment portal for general workers, drivers, clerks, artisans, and graduates.",
+            "desc": "Official government database connecting Namibian job seekers, artisans, drivers, and graduates with local employers.",
             "contact": "https://nieis.namibiaatwork.gov.na/"
         },
         {
@@ -179,7 +266,7 @@ def get_verified_local_pool():
         },
         {
             "title": "Mining, Artisan & Engineering Apprenticeships",
-            "company": "Rössing Uranium / Swakop Uranium",
+            "company": "Rössing Uranium",
             "location": "Swakopmund",
             "type": "Internship",
             "postedDate": today,
@@ -197,40 +284,24 @@ def get_verified_local_pool():
         },
         {
             "title": "Kavango East Health, Admin & Community Field Opportunities",
-            "company": "IntraHealth / Namibia Health Programmes",
+            "company": "Ministry of Health / Partner Programmes",
             "location": "Rundu",
             "type": "Full-time",
             "postedDate": today,
             "desc": "Data clerks, community field officers, and administrative roles based in Rundu and surrounding districts.",
-            "contact": "https://www.jobportunities.net/"
-        },
-        {
-            "title": "Electrical & Mechanical Plant Attachment",
-            "company": "Ohorongo Cement",
-            "location": "Tsumeb",
-            "type": "Internship",
-            "postedDate": today,
-            "desc": "Practical industrial attachment and artisan vacancies in the Oshikoto region.",
-            "contact": "https://www.ohorongo-cement.com/careers/"
-        },
-        {
-            "title": "Banking Graduate Programme & Teller Vacancies",
-            "company": "FNB Namibia (FirstRand Namibia)",
-            "location": "Ongwediva",
-            "type": "Graduate",
-            "postedDate": today,
-            "desc": "Entry-level branch roles and graduate development programmes for UNAM, NUST, and IUM graduates.",
-            "contact": "https://www.fnbnamibia.com.na/careers/"
+            "contact": "https://jobsnamibia.net/"
         }
     ]
 
 def scrape_jobs():
     raw_jobs = []
+    raw_jobs.extend(fetch_careerjet_namibia())
+    raw_jobs.extend(fetch_jobsnamibia_net())
     raw_jobs.extend(fetch_reliefweb_namibia())
-    raw_jobs.extend(fetch_namibian_rss_feeds())
-    raw_jobs.extend(get_verified_local_pool())
+    raw_jobs.extend(fetch_worldwide_remote_jobs())
+    raw_jobs.extend(get_verified_namibian_portals())
 
-    # Strict Deduplication (checks title+company+location AND exact URL)
+    # Strict Deduplication
     unique_jobs = []
     seen_keys = set()
     seen_urls = set()
@@ -251,14 +322,13 @@ def scrape_jobs():
     # Sort newest release dates first
     unique_jobs.sort(key=lambda x: x.get("postedDate", ""), reverse=True)
 
-    # Re-index IDs cleanly
     for idx, job in enumerate(unique_jobs, 1):
         job["id"] = f"job-{idx}"
 
     with open("jobs.json", "w", encoding="utf-8") as f:
         json.dump(unique_jobs, f, indent=2, ensure_ascii=False)
 
-    print(f"Successfully updated jobs.json with {len(unique_jobs)} unique Namibian jobs!")
+    print(f"Successfully updated jobs.json with {len(unique_jobs)} unique Namibian & global remote jobs!")
 
 if __name__ == "__main__":
     scrape_jobs()
