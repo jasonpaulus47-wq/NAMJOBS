@@ -1,115 +1,122 @@
 import json
 import datetime
 import requests
+import xml.etree.ElementTree as ET
 
-def scrape_jobs():
-    scraped_jobs = []
+def scrape_namibian_jobs():
+    jobs = []
+    today = datetime.date.today().strftime("%Y-%m-%d")
+
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+        "User-Agent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
     }
 
-    # Source 1: Remote / Africa Tech Jobs API Feed (Guaranteed Live Output)
-    try:
-        api_url = "https://arbeitnow.com/api/job-board-api"
-        res = requests.get(api_url, headers=headers, timeout=10)
-        if res.status_code == 200:
-            data = res.json()
-            for item in data.get('data', []):
-                title = item.get('title', 'Role')
-                company = item.get('company_name', 'Global Employer')
-                
-                # Smart categorization: tag internships/graduates automatically
-                job_type = "Internship" if any(kw in title.lower() for kw in ["intern", "graduate", "trainee", "attachment"]) else "Full-time"
-                
-                scraped_jobs.append({
-                    "id": f"api-{len(scraped_jobs)+1}",
-                    "title": title,
-                    "company": company,
-                    "location": "Remote / Namibia",
-                    "type": job_type,
-                    "postedDate": str(datetime.date.today()),
-                    "desc": "Remote & local opportunities. Tap 'Apply Here' to view requirements and apply.",
-                    "contact": item.get('url', 'https://www.namijob.com')
-                })
-    except Exception as e:
-        print(f"API Fetch Error: {e}")
-
-    # Source 2: Fresh Local Namibian Vacancies Pool (Including General, Engineering, and Student Roles)
-    local_vacancies = [
+    # 1. Pull real Namibian listings via local RSS / job feeds
+    rss_sources = [
         {
-            "id": "nam-101",
-            "title": "Junior Electrical Engineer / Technician",
-            "company": "Namibian Power Corporation",
-            "location": "Windhoek",
-            "type": "Full-time",
-            "postedDate": str(datetime.date.today()),
-            "desc": "Assisting with substation maintenance, PLC circuit testing, and high-voltage grid monitoring.",
-            "contact": "https://www.nampower.com.na/"
+            "url": "https://www.jobportunities.net/rss.xml",
+            "default_company": "Namibian Employer"
         },
         {
-            "id": "nam-102",
-            "title": "IT Support & Network Assistant",
-            "company": "Telecom Namibia",
-            "location": "Walvis Bay",
-            "type": "Full-time",
-            "postedDate": str(datetime.date.today()),
-            "desc": "Troubleshooting local area networks, hardware setups, and user workstation support.",
-            "contact": "https://www.telecom.na/"
-        },
-        {
-            "id": "nam-103",
-            "title": "Logistics & Fleet Supervisor",
-            "company": "F P du Toit Transport",
-            "location": "Swakopmund",
-            "type": "Full-time",
-            "postedDate": str(datetime.date.today()),
-            "desc": "Overseeing vehicle maintenance logs, dispatch schedules, and diagnostic reporting.",
-            "contact": "https://www.dutoit-transport.com.na/"
-        },
-        {
-            "id": "nam-104",
-            "title": "General Worker & Warehouse Assistant",
-            "company": "Namibia Logistics Hub",
-            "location": "Oshakati",
-            "type": "General",
-            "postedDate": str(datetime.date.today()),
-            "desc": "Loading, offloading, stock packing, and general warehouse maintenance. No prior degree required.",
-            "contact": "https://www.namibia-logistics.com"
-        },
-        {
-            "id": "nam-105",
-            "title": "Electrical Engineering Student Attachment",
-            "company": "Ohorongo Cement",
-            "location": "Otavi",
-            "type": "Internship",
-            "postedDate": str(datetime.date.today()),
-            "desc": "Practical in-service training opportunity for technical and engineering students.",
-            "contact": "https://www.ohorongo-cement.com"
+            "url": "https://namibia.jobs/feed/",
+            "default_company": "Namibia Jobs Portal"
         }
     ]
 
-    # Combine all raw pools
-    raw_jobs = scraped_jobs + local_vacancies
+    for source in rss_sources:
+        try:
+            resp = requests.get(source["url"], headers=headers, timeout=12)
+            if resp.status_code == 200:
+                root = ET.fromstring(resp.content)
+                for item in root.findall(".//item")[:25]:
+                    title = (item.findtext("title") or "").strip()
+                    link = (item.findtext("link") or "").strip()
+                    desc_raw = (item.findtext("description") or "").strip()
 
-    # Smart Deduplication Logic (prevents duplicate listings from ever being saved)
-    unique_jobs = []
-    seen_identifiers = set()
-    
-    for job in raw_jobs:
-        identifier = (job['title'].lower().strip(), job['company'].lower().strip())
-        if identifier not in seen_identifiers:
-            seen_identifiers.add(identifier)
-            unique_jobs.append(job)
+                    if not title or not link:
+                        continue
 
-    # Re-index IDs neatly
-    for idx, job in enumerate(unique_jobs, 1):
-        job['id'] = f"job-{idx}"
+                    # Clean HTML tags from description if present
+                    clean_desc = desc_raw.split("<")[0].strip()
+                    if not clean_desc:
+                        clean_desc = "Verified Namibian vacancy. Tap 'Apply Here' to view full requirements and submit your CV."
 
-    # Save to jobs.json
-    with open('jobs.json', 'w', encoding='utf-8') as f:
-        json.dump(unique_jobs, f, indent=2, ensure_ascii=False)
+                    # Detect Namibian town from title or description
+                    location = detect_namibia_town(f"{title} {clean_desc}")
+                    job_type = detect_job_type(title)
 
-    print(f"Successfully updated jobs.json with {len(unique_jobs)} unique active jobs!")
+                    jobs.append({
+                        "title": title,
+                        "company": source["default_company"],
+                        "location": location,
+                        "type": job_type,
+                        "postedDate": today,
+                        "desc": clean_desc[:220] + ("..." if len(clean_desc) > 220 else ""),
+                        "contact": link
+                    })
+        except Exception as e:
+            print(f"Skipping feed {source['url']}: {e}")
+
+    # 2. Fallback / Local Verified Portals if RSS feeds return empty
+    if not jobs:
+        jobs = [
+            {
+                "title": "General Workers, Drivers & Clerks (Ongoing Intake)",
+                "company": "NIEIS - Ministry of Labour Namibia",
+                "location": "Windhoek / Nationwide",
+                "type": "General",
+                "postedDate": today,
+                "desc": "Register your profile and apply directly for verified government and private sector vacancies across all 14 regions of Namibia.",
+                "contact": "https://nieis.namibiaatwork.gov.na/"
+            },
+            {
+                "title": "Graduate Internships & Trainee Programs",
+                "company": "Namibia Job Opportunities Portal",
+                "location": "Windhoek",
+                "type": "Internship",
+                "postedDate": today,
+                "desc": "Browse the latest internships, vocational attachments, and entry-level roles for Namibian students and graduates.",
+                "contact": "https://www.jobportunities.net/"
+            },
+            {
+                "title": "Retail, Logistics & Mining Vacancies",
+                "company": "Careers in Namibia",
+                "location": "Walvis Bay / Swakopmund / Windhoek",
+                "type": "Full-time",
+                "postedDate": today,
+                "desc": "Direct applications for Erongo and Khomas region employers. Tap 'Apply Here' to go straight to the local listing.",
+                "contact": "https://www.careers.com.na/"
+            }
+        ]
+
+    with open("jobs.json", "w", encoding="utf-8") as f:
+        json.dump(jobs, f, indent=2, ensure_ascii=False)
+
+    print(f"Saved {len(jobs)} verified Namibian jobs to jobs.json")
+
+
+def detect_namibia_town(text):
+    t = text.lower()
+    towns = [
+        "Windhoek", "Walvis Bay", "Swakopmund", "Oshakati",
+        "Ondangwa", "Ongwediva", "Rundu", "Katima Mulilo",
+        "Otjiwarongo", "Gobabis", "Keetmanshoop", "Tsumeb",
+        "Oranjemund", "Luderitz", "Rehoboth", "Okahandja"
+    ]
+    for town in towns:
+        if town.lower() in t:
+            return town
+    return "Windhoek / Namibia"
+
+
+def detect_job_type(title):
+    t = title.lower()
+    if any(k in t for k in ["intern", "trainee", "graduate", "attachment"]):
+        return "Internship"
+    if any(k in t for k in ["driver", "cleaner", "assistant", "clerk", "general", "security", "cashier"]):
+        return "General"
+    return "Full-time"
+
 
 if __name__ == "__main__":
-    scrape_jobs()
+    scrape_namibian_jobs()
