@@ -10,7 +10,6 @@
       --card-bg: #161e2e;
       --accent-color: #00f2fe;
       --accent-green: #10b981;
-      --accent-yellow: #f59e0b;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --border-color: #273548;
@@ -26,7 +25,7 @@
 
     header {
       text-align: center;
-      padding: 20px 15px 10px 15px;
+      padding: 20px 15px 14px 15px;
       background: linear-gradient(180deg, #1e293b 0%, var(--bg-color) 100%);
       border-bottom: 1px solid var(--border-color);
     }
@@ -41,14 +40,6 @@
       color: var(--text-muted);
       font-size: 0.95rem;
       margin-top: 6px;
-    }
-
-    .ad-container {
-      text-align: center;
-      margin: 10px auto;
-      max-width: 600px;
-      padding: 0 15px;
-      min-height: 50px;
     }
 
     .container {
@@ -112,7 +103,6 @@
       padding: 16px;
       margin-bottom: 16px;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s;
     }
 
     .job-card:hover {
@@ -205,17 +195,10 @@
     <p>Find Jobs, General Work & Internships Across All Namibia</p>
   </header>
 
-  <div class="ad-container">
-    <script async="async" data-cfasync="false" src="https://bicea.org/21/15044d1f0a1c0aecdaeccff6215c8d6b"></script>
-    <div id="container-15044d1f0a1c0aecdaeccff6215c8d6b"></div>
-  </div>
-
   <div class="container">
     <div class="search-box">
-      <!-- Easy search for everyone -->
       <input type="text" id="searchInput" placeholder="Search job name, company, or town (e.g. Driver, Windhoek)..." onkeyup="filterJobs()">
       
-      <!-- Quick category buttons -->
       <div class="filter-tabs">
         <button class="tab-btn active" onclick="setCategoryFilter('all', this)">All Jobs 🇳🇦</button>
         <button class="tab-btn" onclick="setCategoryFilter('General', this)">🛠️ General / Support</button>
@@ -223,7 +206,6 @@
         <button class="tab-btn" onclick="setCategoryFilter('Full-time', this)">💼 Professional</button>
       </div>
 
-      <!-- Region selection covering all of Namibia -->
       <select id="regionFilter" onchange="filterJobs()">
         <option value="">📍 All Regions & Towns in Namibia</option>
         <option value="Windhoek">Windhoek (Khomas)</option>
@@ -340,8 +322,7 @@
     loadJobs();
   </script>
 
-  <script data-cfasync="false" src="https://afders.org/1/1ffeffa73971b95716167b833eef1cc2"></script>
+  <!-- SocialBar_1 (Small floating pop-up notification only) -->
   <script data-cfasync="false" src="https://bicea.org/14/4e651eed01716f33a5b0feaf8f4a69fe"></script>
-
 </body>
 </html>
