@@ -1,11 +1,11 @@
 [
   {
-    "title": "NIEIS National Job & Internship Portal (All Regions)",
-    "company": "Ministry of Labour, Industrial Relations & Employment Creation",
+    "title": "NIEIS National Job & Internship Registration (All 14 Regions)",
+    "company": "Ministry of Labour Namibia",
     "location": "Windhoek",
     "type": "General",
     "postedDate": "2026-11-18",
-    "desc": "Official Namibian government employment portal for general workers, drivers, clerks, artisans, and graduates.",
+    "desc": "Official government database connecting Namibian job seekers, artisans, drivers, and graduates with local employers.",
     "contact": "https://nieis.namibiaatwork.gov.na/",
     "id": "job-1"
   },
@@ -31,7 +31,7 @@
   },
   {
     "title": "Mining, Artisan & Engineering Apprenticeships",
-    "company": "Rössing Uranium / Swakop Uranium",
+    "company": "Rössing Uranium",
     "location": "Swakopmund",
     "type": "Internship",
     "postedDate": "2026-11-18",
@@ -51,32 +51,12 @@
   },
   {
     "title": "Kavango East Health, Admin & Community Field Opportunities",
-    "company": "IntraHealth / Namibia Health Programmes",
+    "company": "Ministry of Health / Partner Programmes",
     "location": "Rundu",
     "type": "Full-time",
     "postedDate": "2026-11-18",
     "desc": "Data clerks, community field officers, and administrative roles based in Rundu and surrounding districts.",
-    "contact": "https://www.jobportunities.net/",
+    "contact": "https://jobsnamibia.net/",
     "id": "job-6"
-  },
-  {
-    "title": "Electrical & Mechanical Plant Attachment",
-    "company": "Ohorongo Cement",
-    "location": "Tsumeb",
-    "type": "Internship",
-    "postedDate": "2026-11-18",
-    "desc": "Practical industrial attachment and artisan vacancies in the Oshikoto region.",
-    "contact": "https://www.ohorongo-cement.com/careers/",
-    "id": "job-7"
-  },
-  {
-    "title": "Banking Graduate Programme & Teller Vacancies",
-    "company": "FNB Namibia (FirstRand Namibia)",
-    "location": "Ongwediva",
-    "type": "Graduate",
-    "postedDate": "2026-11-18",
-    "desc": "Entry-level branch roles and graduate development programmes for UNAM, NUST, and IUM graduates.",
-    "contact": "https://www.fnbnamibia.com.na/careers/",
-    "id": "job-8"
   }
 ]
