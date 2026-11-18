@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NamJobs - Find Jobs in Namibia</title>
+  <title>NamJobs - Namibia's #1 Job & Opportunity Portal</title>
   <style>
     :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
+      --bg-color: #0b0f19;
+      --card-bg: #161e2e;
       --accent-color: #00f2fe;
       --accent-green: #10b981;
+      --accent-yellow: #f59e0b;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --border-color: #334155;
+      --border-color: #273548;
     }
 
     body {
@@ -25,13 +26,21 @@
 
     header {
       text-align: center;
-      padding: 20px 10px 10px 10px;
+      padding: 20px 15px 10px 15px;
+      background: linear-gradient(180deg, #1e293b 0%, var(--bg-color) 100%);
+      border-bottom: 1px solid var(--border-color);
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: var(--accent-color);
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 6px;
     }
 
     .ad-container {
@@ -54,14 +63,46 @@
 
     input, select {
       width: 100%;
-      padding: 12px;
-      border-radius: 8px;
+      padding: 14px;
+      border-radius: 10px;
       border: 1px solid var(--border-color);
       background-color: var(--card-bg);
       color: var(--text-main);
       box-sizing: border-box;
       font-size: 1rem;
       margin-bottom: 10px;
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent-color);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .tab-btn {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background-color: var(--accent-color);
+      color: #000;
+      font-weight: bold;
+      border-color: var(--accent-color);
     }
 
     .job-card {
@@ -70,7 +111,12 @@
       border-radius: 12px;
       padding: 16px;
       margin-bottom: 16px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .job-card:hover {
+      border-color: #475569;
     }
 
     .job-title {
@@ -103,6 +149,13 @@
       color: var(--text-muted);
     }
 
+    .tag-new {
+      background-color: rgba(16, 185, 129, 0.15);
+      border-color: var(--accent-green);
+      color: #34d399;
+      font-weight: bold;
+    }
+
     .desc {
       font-size: 0.95rem;
       color: var(--text-muted);
@@ -117,7 +170,7 @@
 
     .btn {
       flex: 1;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
       border-radius: 8px;
       text-decoration: none;
@@ -136,37 +189,67 @@
       background-color: var(--accent-green);
       color: #ffffff;
     }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 20px 0;
+    }
   </style>
 </head>
 <body>
 
   <header>
     <h1>NamJobs 🇳🇦</h1>
+    <p>Find Jobs, General Work & Internships Across All Namibia</p>
   </header>
 
-  <!-- NEW AD CONTAINER -->
   <div class="ad-container">
     <script src="https://quge5.com/88/tag.min.js" data-zone="307224" async data-cfasync="false"></script>
   </div>
 
   <div class="container">
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Search title, company, or town..." onkeyup="filterJobs()">
+      <!-- Easy search for everyone -->
+      <input type="text" id="searchInput" placeholder="Search job name, company, or town (e.g. Driver, Windhoek)..." onkeyup="filterJobs()">
+      
+      <!-- Quick category buttons -->
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="setCategoryFilter('all', this)">All Jobs 🇳🇦</button>
+        <button class="tab-btn" onclick="setCategoryFilter('General', this)">🛠️ General / Support</button>
+        <button class="tab-btn" onclick="setCategoryFilter('Internship', this)">🎓 Students & Interns</button>
+        <button class="tab-btn" onclick="setCategoryFilter('Full-time', this)">💼 Professional</button>
+      </div>
+
+      <!-- Region selection covering all of Namibia -->
       <select id="regionFilter" onchange="filterJobs()">
-        <option value="">All Regions</option>
-        <option value="Windhoek">Windhoek</option>
-        <option value="Walvis Bay">Walvis Bay</option>
-        <option value="Swakopmund">Swakopmund</option>
-        <option value="Oshakati">Oshakati</option>
-        <option value="Rundu">Rundu</option>
+        <option value="">📍 All Regions & Towns in Namibia</option>
+        <option value="Windhoek">Windhoek (Khomas)</option>
+        <option value="Walvis Bay">Walvis Bay (Erongo)</option>
+        <option value="Swakopmund">Swakopmund (Erongo)</option>
+        <option value="Oshakati">Oshakati (Oana)</option>
+        <option value="Ondangwa">Ondangwa (Oana)</option>
+        <option value="Ongwediva">Ongwediva (Oana)</option>
+        <option value="Rundu">Rundu (Kavango East)</option>
+        <option value="Katima Mulilo">Katima Mulilo (Zambezi)</option>
+        <option value="Otjiwarongo">Otjiwarongo (Otjozondjupa)</option>
+        <option value="Gobabis">Gobabis (Omaheke)</option>
+        <option value="Keetmanshoop">Keetmanshoop ( //Karas )</option>
+        <option value="Tsumeb">Tsumeb (Oshikoto)</option>
       </select>
     </div>
 
-    <div id="jobFeed">Loading vacancies...</div>
+    <div id="jobFeed">Loading latest Namibian opportunities...</div>
+  </div>
+
+  <div class="footer-note">
+    NamJobs • Instant updates for all job seekers in Namibia.
   </div>
 
   <script>
     let allJobs = [];
+    let currentCategory = 'all';
 
     async function loadJobs() {
       try {
@@ -174,33 +257,42 @@
         allJobs = await response.json();
         renderJobs(allJobs);
       } catch (err) {
-        document.getElementById('jobFeed').innerHTML = '<p style="text-align:center;">Failed to load job listings.</p>';
+        document.getElementById('jobFeed').innerHTML = '<p style="text-align:center; color: var(--text-muted);">Could not load jobs yet. Run your GitHub scraper!</p>';
       }
+    }
+
+    function setCategoryFilter(category, btnElement) {
+      currentCategory = category;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btnElement.classList.add('active');
+      filterJobs();
     }
 
     function renderJobs(jobs) {
       const feed = document.getElementById('jobFeed');
       if (!jobs || jobs.length === 0) {
-        feed.innerHTML = '<p style="text-align:center;">No vacancies found.</p>';
+        feed.innerHTML = '<p style="text-align:center; color: var(--text-muted); padding: 30px;">No jobs found for this search. Try searching another word or town.</p>';
         return;
       }
 
-      feed.innerHTML = jobs.map(job => `
-        <div class="job-card">
-          <div class="job-title">${job.title}</div>
-          <div class="company-name">${job.company}</div>
-          <div class="tags">
-            <span class="tag">📍 ${job.location}</span>
-            <span class="tag">💼 ${job.type || 'Full-time'}</span>
-            <span class="tag">🕒 ${job.postedDate}</span>
+      feed.innerHTML = jobs.map(job => {
+        return `
+          <div class="job-card">
+            <div class="job-title">${job.title}</div>
+            <div class="company-name">${job.company}</div>
+            <div class="tags">
+              <span class="tag">📍 ${job.location}</span>
+              <span class="tag">💼 ${job.type || 'Full-time'}</span>
+              <span class="tag tag-new">🔥 Released: ${job.postedDate}</span>
+            </div>
+            <div class="desc">${job.desc}</div>
+            <div class="btn-group">
+              <a href="${job.contact}" target="_blank" class="btn btn-apply">Apply Here</a>
+              <button onclick="shareJob('${job.title.replace(/'/g, "\\'")}', '${job.contact}')" class="btn btn-share">📲 Share</button>
+            </div>
           </div>
-          <div class="desc">${job.desc}</div>
-          <div class="btn-group">
-            <a href="${job.contact}" target="_blank" class="btn btn-apply">Apply Now</a>
-            <button onclick="shareJob('${job.title}', '${job.contact}')" class="btn btn-share">📲 Share</button>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     function filterJobs() {
@@ -210,9 +302,26 @@
       const filtered = allJobs.filter(job => {
         const matchesQuery = job.title.toLowerCase().includes(query) ||
                              job.company.toLowerCase().includes(query) ||
-                             job.location.toLowerCase().includes(query);
+                             job.location.toLowerCase().includes(query) ||
+                             job.desc.toLowerCase().includes(query);
+        
         const matchesRegion = !region || job.location.toLowerCase().includes(region);
-        return matchesQuery && matchesRegion;
+        
+        let matchesCategory = true;
+        if (currentCategory === 'General') {
+          matchesCategory = (job.type || '').toLowerCase().includes('general') || 
+                            (job.title || '').toLowerCase().includes('assistant') ||
+                            (job.title || '').toLowerCase().includes('driver') ||
+                            (job.title || '').toLowerCase().includes('clerk');
+        } else if (currentCategory === 'Internship') {
+          matchesCategory = (job.type || '').toLowerCase().includes('intern') || 
+                            (job.title || '').toLowerCase().includes('graduate') ||
+                            (job.title || '').toLowerCase().includes('trainee');
+        } else if (currentCategory === 'Full-time') {
+          matchesCategory = (job.type || '').toLowerCase().includes('full-time');
+        }
+
+        return matchesQuery && matchesRegion && matchesCategory;
       });
 
       renderJobs(filtered);
@@ -220,10 +329,10 @@
 
     function shareJob(title, url) {
       if (navigator.share) {
-        navigator.share({ title: title, url: url });
+        navigator.share({ title: title, url: url }).catch(() => {});
       } else {
         navigator.clipboard.writeText(url);
-        alert('Link copied to clipboard!');
+        alert('Job link copied! Paste it on WhatsApp to share with friends.');
       }
     }
 
