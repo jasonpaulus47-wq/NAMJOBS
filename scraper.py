@@ -14,21 +14,27 @@ def scrape_jobs():
         res = requests.get(api_url, headers=headers, timeout=10)
         if res.status_code == 200:
             data = res.json()
-            for item in data.get('data', [])[:5]:
+            for item in data.get('data', []):
+                title = item.get('title', 'Role')
+                company = item.get('company_name', 'Global Employer')
+                
+                # Smart categorization: tag internships/graduates automatically
+                job_type = "Internship" if any(kw in title.lower() for kw in ["intern", "graduate", "trainee", "attachment"]) else "Full-time"
+                
                 scraped_jobs.append({
                     "id": f"api-{len(scraped_jobs)+1}",
-                    "title": item.get('title', 'Software / Tech Role'),
-                    "company": item.get('company_name', 'Global Employer'),
+                    "title": title,
+                    "company": company,
                     "location": "Remote / Namibia",
-                    "type": "Full-time",
+                    "type": job_type,
                     "postedDate": str(datetime.date.today()),
-                    "desc": "Remote & local opportunities. Tap 'Apply Now' to view requirements and apply.",
+                    "desc": "Remote & local opportunities. Tap 'Apply Here' to view requirements and apply.",
                     "contact": item.get('url', 'https://www.namijob.com')
                 })
     except Exception as e:
         print(f"API Fetch Error: {e}")
 
-    # Source 2: Fresh Local Namibian Vacancies Pool
+    # Source 2: Fresh Local Namibian Vacancies Pool (Including General, Engineering, and Student Roles)
     local_vacancies = [
         {
             "id": "nam-101",
@@ -59,16 +65,51 @@ def scrape_jobs():
             "postedDate": str(datetime.date.today()),
             "desc": "Overseeing vehicle maintenance logs, dispatch schedules, and diagnostic reporting.",
             "contact": "https://www.dutoit-transport.com.na/"
+        },
+        {
+            "id": "nam-104",
+            "title": "General Worker & Warehouse Assistant",
+            "company": "Namibia Logistics Hub",
+            "location": "Oshakati",
+            "type": "General",
+            "postedDate": str(datetime.date.today()),
+            "desc": "Loading, offloading, stock packing, and general warehouse maintenance. No prior degree required.",
+            "contact": "https://www.namibia-logistics.com"
+        },
+        {
+            "id": "nam-105",
+            "title": "Electrical Engineering Student Attachment",
+            "company": "Ohorongo Cement",
+            "location": "Otavi",
+            "type": "Internship",
+            "postedDate": str(datetime.date.today()),
+            "desc": "Practical in-service training opportunity for technical and engineering students.",
+            "contact": "https://www.ohorongo-cement.com"
         }
     ]
 
-    # Combine live scraped API jobs + fresh vacancies
-    final_jobs = scraped_jobs + local_vacancies
+    # Combine all raw pools
+    raw_jobs = scraped_jobs + local_vacancies
 
+    # Smart Deduplication Logic (prevents duplicate listings from ever being saved)
+    unique_jobs = []
+    seen_identifiers = set()
+    
+    for job in raw_jobs:
+        identifier = (job['title'].lower().strip(), job['company'].lower().strip())
+        if identifier not in seen_identifiers:
+            seen_identifiers.add(identifier)
+            unique_jobs.append(job)
+
+    # Re-index IDs neatly
+    for idx, job in enumerate(unique_jobs, 1):
+        job['id'] = f"job-{idx}"
+
+    # Save to jobs.json
     with open('jobs.json', 'w', encoding='utf-8') as f:
-        json.dump(final_jobs, f, indent=2)
+        json.dump(unique_jobs, f, indent=2, ensure_ascii=False)
 
-    print(f"Successfully updated jobs.json with {len(final_jobs)} jobs!")
+    print(f"Successfully updated jobs.json with {len(unique_jobs)} unique active jobs!")
 
 if __name__ == "__main__":
     scrape_jobs()
