@@ -4,7 +4,7 @@
     "company": "Ministry of Labour Namibia",
     "location": "Windhoek",
     "type": "General",
-    "postedDate": "2026-11-19",
+    "postedDate": "2026-11-20",
     "desc": "Official government database connecting Namibian job seekers, artisans, drivers, and graduates with local employers.",
     "contact": "https://nieis.namibiaatwork.gov.na/",
     "id": "job-1"
@@ -14,7 +14,7 @@
     "company": "NamPower (Namibia Power Corporation)",
     "location": "Windhoek",
     "type": "Internship",
-    "postedDate": "2026-11-19",
+    "postedDate": "2026-11-20",
     "desc": "Bursaries, graduate-in-training, and vocational attachment opportunities for NUST, UNAM & VTC students.",
     "contact": "https://www.nampower.com.na/Careers.aspx",
     "id": "job-2"
@@ -24,7 +24,7 @@
     "company": "Telecom Namibia",
     "location": "Walvis Bay",
     "type": "Internship",
-    "postedDate": "2026-11-19",
+    "postedDate": "2026-11-20",
     "desc": "Student attachment and graduate opportunities in telecommunications, networking, and customer operations.",
     "contact": "https://www.telecom.na/careers",
     "id": "job-3"
@@ -34,7 +34,7 @@
     "company": "Rössing Uranium",
     "location": "Swakopmund",
     "type": "Internship",
-    "postedDate": "2026-11-19",
+    "postedDate": "2026-11-20",
     "desc": "Apprenticeships, engineering graduate programmes, and technical roles in the Erongo region.",
     "contact": "https://www.rossing.com/careers.htm",
     "id": "job-4"
@@ -44,7 +44,7 @@
     "company": "Pupkewitz Group Namibia",
     "location": "Oshakati",
     "type": "General",
-    "postedDate": "2026-11-19",
+    "postedDate": "2026-11-20",
     "desc": "Sales assistants, drivers, warehouse packers, and branch administrators across northern Namibia.",
     "contact": "https://www.pupkewitz.com/careers",
     "id": "job-5"
@@ -190,16 +190,6 @@
     "id": "job-19"
   },
   {
-    "title": "Head of Engineering (Remote - Namibia Eligible)",
-    "company": "Lemon.io",
-    "location": "Remote / Windhoek",
-    "type": "Full-time",
-    "postedDate": "2026-10-26",
-    "desc": "Work from anywhere in Namibia. Category: Software Development. Tap 'Apply Here' to apply.",
-    "contact": "https://remotive.com/remote-jobs/software-development/head-of-engineering-2091134",
-    "id": "job-20"
-  },
-  {
     "title": "AI Trainer - Video Annotation (Remote - Namibia Eligible)",
     "company": "iMerit Technology",
     "location": "Remote / Windhoek",
@@ -207,7 +197,7 @@
     "postedDate": "2026-10-22",
     "desc": "Work from anywhere in Namibia. Category: Artificial Intelligence. Tap 'Apply Here' to apply.",
     "contact": "https://remotive.com/remote-jobs/artificial-intelligence/ai-trainer-video-annotation-2091161",
-    "id": "job-21"
+    "id": "job-20"
   },
   {
     "title": "Contracts Manager (Civil) – Namibia",
@@ -217,7 +207,7 @@
     "postedDate": "2026-10-13",
     "desc": "An established construction company in Windhoek, Namibia is seeking a Contracts Manager, to join them on a limited duration contract.   Key Requirements: +8 Years experience within construction focusing on... \n...",
     "contact": "https://hireresolve.co.za/job/contracts-manager-civil-namibia/",
-    "id": "job-22"
+    "id": "job-21"
   },
   {
     "title": "Project Manager (Civil and Mining) – Namibia",
@@ -227,7 +217,7 @@
     "postedDate": "2026-10-13",
     "desc": "A leading construction company in Namibia is seeking a Project Manager, to join their team.   Key Requirements: +10 years’ experience in open cast mining and civil construction such as... \n The post Project Man...",
     "contact": "https://hireresolve.co.za/job/project-manager-civil-and-mining-namibia/",
-    "id": "job-23"
+    "id": "job-22"
   },
   {
     "title": "Junior Solar Design Engineer – Namibia",
@@ -237,7 +227,7 @@
     "postedDate": "2026-10-13",
     "desc": "A reputable renewable client of ours in Windhoek, Namibia is seeking a Solar Design Engineer to join their team.   Key Requirements: +2 years experience in solar PV systems Sc.... \n The post Junior Solar Design...",
     "contact": "https://hireresolve.co.za/job/junior-solar-design-engineer-namibia/",
-    "id": "job-24"
+    "id": "job-23"
   },
   {
     "title": "Accountant",
@@ -247,7 +237,7 @@
     "postedDate": "2026-10-13",
     "desc": "Hire Resolve has partnered with a great company, which specializes in Engineering, Procurement, and Construction. They are seeking an Accountant to join their team in Windhoek, Namibia. This position requires a...",
     "contact": "https://hireresolve.co.za/job/accountant-4/",
-    "id": "job-25"
+    "id": "job-24"
   },
   {
     "title": "Chief Engineer Officer (Maritime) – Namibia",
@@ -257,7 +247,7 @@
     "postedDate": "2026-10-13",
     "desc": "Hire Resolve’s client is urgently seeking the expertise of a Chief Engineer Officer in Namibia.   Key Requirements: +8 years’ experience on board a mining vessel +5 years’ experience at... \n The post Chief Engi...",
     "contact": "https://hireresolve.co.za/job/chief-engineer-officer-maritime-namibia/",
-    "id": "job-26"
+    "id": "job-25"
   },
   {
     "title": "Senior Project Engineer (water treatment)– Namibia",
@@ -267,7 +257,7 @@
     "postedDate": "2026-10-13",
     "desc": "Hire Resolve’s client is urgently seeking the expertise of a Senior Project Engineer in Windhoek, Namibia.   Key Requirements: +10 years’ experience in water treatment projects BSc. / B.Eng. in... \n The post Se...",
     "contact": "https://hireresolve.co.za/job/senior-project-engineer-water-treatment-namibia/",
-    "id": "job-27"
+    "id": "job-26"
   },
   {
     "title": "Assistant to CEO – Namibia",
@@ -277,7 +267,7 @@
     "postedDate": "2026-10-13",
     "desc": "Description Hire Resolve’s client, a reputable company in Namibia, is currently seeking a dedicated and efficient Assistant to the CEO. As an Assistant to the CEO, you will provide comprehensive... \n The post A...",
     "contact": "https://hireresolve.co.za/job/assistant-to-ceo-namibia/",
-    "id": "job-28"
+    "id": "job-27"
   },
   {
     "title": "Chief Financial Officer",
@@ -287,7 +277,7 @@
     "postedDate": "2026-10-13",
     "desc": "Hire Resolve, a leading recruitment agency, is currently seeking a highly experienced and qualified Chief Financial Officer (CFO) to join our client’s team in Windhoek. As the CFO, you will... \n The post Chief ...",
     "contact": "https://hireresolve.co.za/job/chief-financial-officer/",
-    "id": "job-29"
+    "id": "job-28"
   },
   {
     "title": "Senior Accountant – Investment Industry",
@@ -297,7 +287,7 @@
     "postedDate": "2026-10-13",
     "desc": "Hire Resolve is seeking an experienced Senior Accountant to join a driven and leading Investment company in Namibia! The position reports to the Financial Manager and will have a finance... \n The post Senior Ac...",
     "contact": "https://hireresolve.co.za/job/senior-accountant-investment-industry/",
-    "id": "job-30"
+    "id": "job-29"
   },
   {
     "title": "Head Of Finance",
@@ -307,7 +297,7 @@
     "postedDate": "2026-10-13",
     "desc": "Head of Finance | Windhoek, Namibia (Onsite) Hire Resolve is seeking a high-caliber, experienced Head of Finance for a dynamic leader operating in the renewable energy and solar PV infrastructure... \n The post ...",
     "contact": "https://hireresolve.co.za/job/head-of-finance-3/",
-    "id": "job-31"
+    "id": "job-30"
   },
   {
     "title": "Convinced that you are the one, then Follow the link to download the specifics;",
@@ -317,7 +307,7 @@
     "postedDate": "2026-07-03",
     "desc": "Convinced that you are the one, then Follow the link to download the specifics; https://www.luderitz-tc.com/wp-content/uploads/2026/07/Water-Sanitation-Specialist.pdf . The Employment Application Form Link; http://www.luderitz-tc....",
     "contact": "https://www.luderitz-tc.com/wp-content/uploads/2026/07/Water-Sanitation-Specialist.pdf",
-    "id": "job-32"
+    "id": "job-31"
   },
   {
     "title": "PSM Circular No. E of 2026",
@@ -327,7 +317,7 @@
     "postedDate": "2026-07-03",
     "desc": "PSM Circular No. E of 2026",
     "contact": "https://t.me/NamibianJobOpportunities/89197",
-    "id": "job-33"
+    "id": "job-32"
   },
   {
     "title": "Document from Wilbard",
@@ -337,7 +327,7 @@
     "postedDate": "2026-06-27",
     "desc": "Document from Wilbard",
     "contact": "https://t.me/NamibianJobOpportunities/89189",
-    "id": "job-34"
+    "id": "job-33"
   },
   {
     "title": "Government Employment Form GRN 👆🏾 👆🏾 👆🏾 👆🏾 👆🏾 👆🏾 👆🏾 👆🏾",
@@ -347,7 +337,7 @@
     "postedDate": "2026-06-25",
     "desc": "Government Employment Form GRN 👆🏾 👆🏾 👆🏾 👆🏾 👆🏾 👆🏾 👆🏾 👆🏾",
     "contact": "https://t.me/NamibianJobOpportunities/89175",
-    "id": "job-35"
+    "id": "job-34"
   },
   {
     "title": "Hi Mr Willbard am a young 27 years looking for a taxi driver/Yango driver jobs,I hve clean pape...",
@@ -357,7 +347,7 @@
     "postedDate": "2026-06-25",
     "desc": "Hi Mr Willbard am a young 27 years looking for a taxi driver/Yango driver jobs,I hve clean paper and records am willing to start ASAP. Am in Wdhk contact me at 0818826548",
     "contact": "https://t.me/NamibianJobOpportunities/89166",
-    "id": "job-36"
+    "id": "job-35"
   },
   {
     "title": "Good afternoon sir I'm a 21 year old female looking for any kind of job available immediately, ...",
@@ -367,7 +357,7 @@
     "postedDate": "2026-06-25",
     "desc": "Good afternoon sir I'm a 21 year old female looking for any kind of job available immediately, I have no working experience but I'm seeking for any post available , I'm a student at Nust doing a bridging course (non-steam) and a f...",
     "contact": "https://t.me/NamibianJobOpportunities/89167",
-    "id": "job-37"
+    "id": "job-36"
   },
   {
     "title": "I'm looking for an internship in Electrical and electronics engineering course",
@@ -377,7 +367,7 @@
     "postedDate": "2026-06-25",
     "desc": "I'm looking for an internship in Electrical and electronics engineering course",
     "contact": "https://t.me/NamibianJobOpportunities/89168",
-    "id": "job-38"
+    "id": "job-37"
   },
   {
     "title": "Good day? I would like to ask for anyone with Hostel Matron Interview Questions please share on...",
@@ -387,7 +377,7 @@
     "postedDate": "2026-06-25",
     "desc": "Good day? I would like to ask for anyone with Hostel Matron Interview Questions please share on this platform",
     "contact": "https://t.me/NamibianJobOpportunities/89169",
-    "id": "job-39"
+    "id": "job-38"
   },
   {
     "title": "May someone drop an example how new GRN forms are being filled once again",
@@ -397,7 +387,7 @@
     "postedDate": "2026-06-25",
     "desc": "May someone drop an example how new GRN forms are being filled once again",
     "contact": "https://t.me/NamibianJobOpportunities/89170",
-    "id": "job-40"
+    "id": "job-39"
   },
   {
     "title": "𝐇𝐢𝐫𝐢𝐧𝐠 𝐌𝐚𝐜𝐡𝐢𝐧𝐞 𝐈𝐧𝐬𝐩𝐞𝐜𝐭𝐨𝐫𝐬 𝐗𝟑 - 𝐍𝐚𝐦𝐢𝐛𝐢𝐚",
@@ -407,7 +397,7 @@
     "postedDate": "2026-06-22",
     "desc": "𝐇𝐢𝐫𝐢𝐧𝐠 𝐌𝐚𝐜𝐡𝐢𝐧𝐞 𝐈𝐧𝐬𝐩𝐞𝐜𝐭𝐨𝐫𝐬 𝐗𝟑 - 𝐍𝐚𝐦𝐢𝐛𝐢𝐚 We are hiring three 𝐌𝐚𝐜𝐡𝐢𝐧𝐞 𝐈𝐧𝐬𝐩𝐞𝐜𝐭𝐨𝐫𝐬 for - 𝐍𝐚𝐦𝐢𝐛𝐢𝐚, simply go to our platform www.themachinexchange.com , click on 𝐒𝐢𝐠𝐧 𝐈𝐧, then go to 𝐏𝐫𝐨𝐠𝐫𝐚𝐦 𝐏𝐚𝐫𝐭𝐧𝐞𝐫𝐬𝐡𝐢𝐩 - 𝐌𝐚𝐜𝐡𝐢𝐧𝐞 𝐈𝐧𝐬𝐩𝐞𝐜𝐭𝐨𝐫𝐬 𝐚𝐧𝐝 𝐁𝐮𝐬𝐢𝐧𝐞𝐬𝐬 ...",
     "contact": "http://www.themachinexchange.com/",
-    "id": "job-41"
+    "id": "job-40"
   },
   {
     "title": "33 years old looking for a job as bartender, nanny, stock controller, betting ready to start an...",
@@ -417,7 +407,7 @@
     "postedDate": "2026-06-22",
     "desc": "33 years old looking for a job as bartender, nanny, stock controller, betting ready to start anytime I want only in the north My number 0818036906",
     "contact": "https://t.me/NamibianJobOpportunities/89164",
-    "id": "job-42"
+    "id": "job-41"
   },
   {
     "title": "I am currently seeking employment in Walvis Bay and surrounding areas. I am available to start ...",
@@ -427,7 +417,7 @@
     "postedDate": "2026-06-22",
     "desc": "I am currently seeking employment in Walvis Bay and surrounding areas. I am available to start immediately. I have experience in administrative support and management, and I am currently studying towards a qualification in Account...",
     "contact": "https://t.me/NamibianJobOpportunities/89165",
-    "id": "job-43"
+    "id": "job-42"
   },
   {
     "title": "Good morning. I am seeking a provider who offers training or is capable of training an individu...",
@@ -437,7 +427,7 @@
     "postedDate": "2026-06-15",
     "desc": "Good morning. I am seeking a provider who offers training or is capable of training an individual in Housekeeping Management, Laundry Attendant duties, or general cleaning procedures. The desired training duration ranges from days...",
     "contact": "https://t.me/NamibianJobOpportunities/89156",
-    "id": "job-44"
+    "id": "job-43"
   },
   {
     "title": "I'm looking for a job in Oshakati and Ongwediva in guesthouses as a room attendant or in privat...",
@@ -447,7 +437,7 @@
     "postedDate": "2026-06-15",
     "desc": "I'm looking for a job in Oshakati and Ongwediva in guesthouses as a room attendant or in private school as a junior primary teacher. I've experience please I'm ready to start anyday Please contact 0815740458",
     "contact": "https://t.me/NamibianJobOpportunities/89157",
-    "id": "job-45"
+    "id": "job-44"
   },
   {
     "title": "PSMC No D of 2026",
@@ -457,7 +447,7 @@
     "postedDate": "2026-06-15",
     "desc": "PSMC No D of 2026",
     "contact": "https://t.me/NamibianJobOpportunities/89138",
-    "id": "job-46"
+    "id": "job-45"
   },
   {
     "title": "Can one good Samaritan share oral interview questions for Ministry of Education please 👏🏽",
@@ -467,7 +457,7 @@
     "postedDate": "2026-06-12",
     "desc": "Can one good Samaritan share oral interview questions for Ministry of Education please 👏🏽",
     "contact": "https://t.me/NamibianJobOpportunities/89130",
-    "id": "job-47"
+    "id": "job-46"
   },
   {
     "title": "Office admin",
@@ -477,7 +467,7 @@
     "postedDate": "2026-06-12",
     "desc": "Office admin",
     "contact": "https://t.me/NamibianJobOpportunities/89131",
-    "id": "job-48"
+    "id": "job-47"
   },
   {
     "title": "MAINTENANCE-FITTER.-WATER-WORKS-WATER-MANAGEMENT-PATTERSON-C2",
@@ -487,6 +477,6 @@
     "postedDate": "2026-06-12",
     "desc": "MAINTENANCE-FITTER.-WATER-WORKS-WATER-MANAGEMENT-PATTERSON-C2",
     "contact": "https://t.me/NamibianJobOpportunities/89133",
-    "id": "job-49"
+    "id": "job-48"
   }
 ]
